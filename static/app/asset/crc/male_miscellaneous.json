@@ -1,0 +1,575 @@
+{
+  "form": [
+    {
+      "type": "help",
+      "helpvalue": "<h3>Section 6: Miscellaneous<h3>"
+    },
+    {
+      "key": "somke",
+      "type": "radios",
+      "titleMap": [
+        {
+          "value": -1,
+          "name": "Yes"
+        },
+        {
+          "value": 0,
+          "name": "No"
+        },
+        {
+          "value": -9,
+          "name": "I don't know"
+        }
+      ]
+    },
+    {
+      "key": "start_time",
+      "type":"select",
+      "titleMap": [
+        {
+          "value": 0,
+          "name": "I have never smoked cigarettes regularly"
+        },
+        {
+          "value": 6,
+          "name": "6"
+        },
+        {
+          "value": 7,
+          "name": "7"
+        },
+        {
+          "value": 8,
+          "name": "8"
+        },
+        {
+          "value": 9,
+          "name": "9"
+        },
+        {
+          "value": 10,
+          "name": "10"
+        },
+        {
+          "value": 11,
+          "name": "11"
+        },
+        {
+          "value": 12,
+          "name": "12"
+        },
+        {
+          "value": 13,
+          "name": "13"
+        },
+        {
+          "value": 14,
+          "name": "14"
+        },
+        {
+          "value": 15,
+          "name": "15"
+        },
+        {
+          "value": 16,
+          "name": "16"
+        },
+        {
+          "value": 17,
+          "name": "17"
+        },
+        {
+          "value": 18,
+          "name": "18"
+        },
+        {
+          "value": 19,
+          "name": "19"
+        },
+        {
+          "value": 20,
+          "name": "20"
+        },
+        {
+          "value": 21,
+          "name": "21"
+        },
+        {
+          "value": 22,
+          "name": "22"
+        },
+        {
+          "value": 23,
+          "name": "23"
+        },
+        {
+          "value": 24,
+          "name": "24"
+        },
+        {
+          "value": 25,
+          "name": "25"
+        },
+        {
+          "value": 26,
+          "name": "26"
+        },
+        {
+          "value": 27,
+          "name": "27"
+        },
+        {
+          "value": 28,
+          "name": "28"
+        },
+        {
+          "value": 29,
+          "name": "29"
+        },
+        {
+          "value": 30,
+          "name": "30"
+        },
+        {
+          "value": 31,
+          "name": "31"
+        },
+        {
+          "value": 32,
+          "name": "32"
+        },
+        {
+          "value": 33,
+          "name": "33"
+        },
+        {
+          "value": 34,
+          "name": "34"
+        },
+        {
+          "value": 35,
+          "name": "35"
+        },
+        {
+          "value": 36,
+          "name": "36"
+        },
+        {
+          "value": 37,
+          "name": "37"
+        },
+        {
+          "value": 38,
+          "name": "38"
+        },
+        {
+          "value": 39,
+          "name": "39"
+        },
+        {
+          "value": 40,
+          "name": "40"
+        },
+        {
+          "value": 41,
+          "name": "41"
+        },
+        {
+          "value": 42,
+          "name": "42"
+        },
+        {
+          "value": 43,
+          "name": "43"
+        },
+        {
+          "value": 44,
+          "name": "44"
+        },
+        {
+          "value": 45,
+          "name": "45"
+        },
+        {
+          "value": 46,
+          "name": "46"
+        },
+        {
+          "value": 47,
+          "name": "47"
+        },
+        {
+          "value": 48,
+          "name": "48"
+        },
+        {
+          "value": 49,
+          "name": "49"
+        },
+        {
+          "value": 50,
+          "name": "50"
+        },
+        {
+          "value": 51,
+          "name": "51"
+        },
+        {
+          "value": 52,
+          "name": "52"
+        },
+        {
+          "value": 53,
+          "name": "53"
+        },
+        {
+          "value": 54,
+          "name": "54"
+        }
+      ],
+      "condition": "response.somke == -1"
+    },
+    {
+      "key": "current_smoke",
+      "type": "radios",
+      "titleMap": [
+        {
+          "value": "yes",
+          "name": "Yes"
+        },
+        {
+          "value": "no",
+          "name": "No"
+        }
+      ],
+      "condition": "response.somke == -1 && response.start_time > 0 "
+    },
+    {
+      "key": "time_quit",
+      "type": "select",
+      "titleMap": [
+        {
+          "value": 16,
+          "name": "16"
+        },
+        {
+          "value": 17,
+          "name": "17"
+        },
+        {
+          "value": 18,
+          "name": "18"
+        },
+        {
+          "value": 19,
+          "name": "19"
+        },
+        {
+          "value": 20,
+          "name": "20"
+        },
+        {
+          "value": 21,
+          "name": "21"
+        },
+        {
+          "value": 22,
+          "name": "22"
+        },
+        {
+          "value": 23,
+          "name": "23"
+        },
+        {
+          "value": 24,
+          "name": "24"
+        },
+        {
+          "value": 25,
+          "name": "25"
+        },
+        {
+          "value": 26,
+          "name": "26"
+        },
+        {
+          "value": 27,
+          "name": "27"
+        },
+        {
+          "value": 28,
+          "name": "28"
+        },
+        {
+          "value": 29,
+          "name": "29"
+        },
+        {
+          "value": 30,
+          "name": "30"
+        },
+        {
+          "value": 31,
+          "name": "31"
+        },
+        {
+          "value": 32,
+          "name": "32"
+        },
+        {
+          "value": 33,
+          "name": "33"
+        },
+        {
+          "value": 34,
+          "name": "34"
+        },
+        {
+          "value": 35,
+          "name": "35"
+        },
+        {
+          "value": 36,
+          "name": "36"
+        },
+        {
+          "value": 37,
+          "name": "37"
+        },
+        {
+          "value": 38,
+          "name": "38"
+        },
+        {
+          "value": 39,
+          "name": "39"
+        },
+        {
+          "value": 40,
+          "name": "40"
+        },
+        {
+          "value": 41,
+          "name": "41"
+        },
+        {
+          "value": 42,
+          "name": "42"
+        },
+        {
+          "value": 43,
+          "name": "43"
+        },
+        {
+          "value": 44,
+          "name": "44"
+        },
+        {
+          "value": 45,
+          "name": "45"
+        },
+        {
+          "value": 46,
+          "name": "46"
+        },
+        {
+          "value": 47,
+          "name": "47"
+        },
+        {
+          "value": 48,
+          "name": "48"
+        },
+        {
+          "value": 49,
+          "name": "49"
+        },
+        {
+          "value": 50,
+          "name": "50"
+        },
+        {
+          "value": 51,
+          "name": "51"
+        },
+        {
+          "value": 52,
+          "name": "52"
+        },
+        {
+          "value": 53,
+          "name": "53"
+        },
+        {
+          "value": 54,
+          "name": "54"
+        }
+      ],
+      "condition": "response.somke == -1 && response.start_time > 0 && response.current_smoke == 'no'"
+    },
+    {
+      "key": "Num_Cigs",
+      "type": "radios",
+      "titleMap": [
+        {
+          "value": 1,
+          "name": "1 to 10 cigarettes a day"
+        },
+        {
+          "value": 2,
+          "name": "11 to 20 cigarettes a day"
+        },
+        {
+          "value": 3,
+          "name": "More than 20 cigarettes a day"
+        }
+      ],
+      "condition": "response.somke == -1 && response.start_time > 0 "
+    },
+    {
+      "type": "submit",
+      "style": "btn-info",
+      "title": "Next"
+    }
+  ],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "somke": {
+        "title": "In your entire lifetime, altogether, have you smoked 100 or more cigarettes?",
+        "type": "number",
+        "enum": [
+            -1,
+            0,
+            -9
+        ]
+    },
+      "start_time": {
+        "title": "How old were you when you started smoking cigarettes on a regular basis, that is, at least one cigarette a day for six months or longer?",
+        "type": "number",
+        "enum": [
+            0,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54
+        ]
+      },
+      "current_smoke": {
+        "title": "Do you currently smoke cigarettes?",
+        "type": "string",
+        "enum": [
+            "yes",
+            "no"
+        ]
+     },
+     "time_quit": {
+        "title": "How old were you when you quit smoking cigarettes completely?",
+        "type": "number",
+        "enum": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54
+        ],
+        "description": "<b>NOTE: If you quit smoking cigarettes completely more than one time, please tell us how old you were the last time you quit smoking completely.</b>"
+     },
+     "Num_Cigs": {
+        "title": "Thinking back over the years you have smoked regularly, about how many cigarettes have you usually smoked a day?",
+        "type": "number",
+        "enum": [
+            1,
+            2,
+            3
+        ]
+     }
+    },
+    "required": [
+      "somke",
+      "start_time",
+      "current_smoke",
+      "time_quit",
+      "Num_Cigs"
+    ]
+  }
+}

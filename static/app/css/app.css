@@ -1,0 +1,128 @@
+/*Custom CSS*/
+
+body {
+    color:#131516;
+    font-family: 'Open Sans', 'Work Sans', 'Tangerine', serif;
+    /*font-size: 1 em;*/
+    text-rendering: optimizeLegibility;
+}
+#about,#testresults,#crc-risk,#test-results,#userinfo,#crc-risk-results{
+  font-size: 1.375em;
+}
+.welcome {
+  font-size: 1.5em;
+}
+#content {
+    margin-top:100px;
+}
+.consent_form_title {
+  text-align: center;
+  font-size: 1.4375em;
+}
+.consent_form_body h5,ul{
+  margin-left: 2%;
+  margin-right: 2%;
+  padding-left:2%;
+  font-size: 1.42em;
+}
+
+.consent_form {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 5%;
+  overflow: scroll;
+  height: 500px;
+  font-size: 1.4375em;
+  text-align: justify;
+
+}
+#content .jumbotron p{
+    font-size: 1.5em;
+    /*text-align: center;*/
+    /*background-color: white;*/
+}
+.panel-info {
+  margin-top: 3%;
+}
+.welcome-bnt {
+    margin-left: 42%;
+    font-size: 1.625em;
+}
+.close_bnt {
+  float: right;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 1.25em;
+}
+.consentform_bnt,.btn-info{
+    text-align: center;
+    font-size: 1.625em;
+}
+.agree_bnt {
+    text-align: center;
+    font-size: 1.625em;
+    margin-left: 36%;
+}
+.img {
+    background: url("../img/colon-cancer.jpg");
+    height: 200px;
+}
+#about .tab-pane {
+    padding: 2em;
+}
+
+#about .tab-pane h4 {
+    font-weight: 800;
+}
+
+#loading-bar {
+  pointer-events: all;
+  z-index: 99999;
+  border: none;
+  margin: 0px;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  cursor: wait;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
+  font-size: 20px;
+}
+
+.form-container {
+   padding-left: 10%;
+   padding-right:  10%;
+   margin-left: 10%;
+   margin-right: 10%;
+}
+a.read-more, a.read-less {
+  cursor: pointer;
+  color: blue;
+}
+span.more-text {
+  display: none;
+}
+span.more-text.show {
+    display: inline !important
+}
+p.read_more_p {
+  display: inline;
+}
+.crc_factors {
+  margin-bottom: 0px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.risk_result_left {
+  width: 38%;
+}
+
+.risk_result_right {
+  width: 62%;
+}

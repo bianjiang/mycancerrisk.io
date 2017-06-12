@@ -1,0 +1,263 @@
+{
+  "form": [
+    {
+      "type": "help",
+      "helpvalue": "<h3>Section 5: Physical Activity<h3>"
+    },
+    {
+      "key": "moderate_activity_months",
+      "type": "select",
+      "titleMap": [
+        {
+          "value": 0,
+          "name": "0"
+        },
+        {
+          "value": 1,
+          "name": "1"
+        },
+        {
+          "value": 1,
+          "name": "1"
+        },
+        {
+         "value": 2,
+         "name": "2"
+        },
+        {
+          "value": 3,
+          "name": "3"
+        },
+        {
+          "value": 4,
+          "name": "4"
+        },
+        {
+          "value": 5,
+          "name": "5"
+        },
+        {
+          "value": 6,
+          "name": "6"
+        },
+        {
+          "value": 7,
+          "name": "7"
+        },
+        {
+         "value": 8,
+         "name": "8"
+        },
+        {
+          "value": 9,
+         "name": "9"
+        },
+        {
+          "value": 10,
+          "name": "10"
+        },
+        {
+          "value": 11,
+          "name": "11"
+        },
+        {
+          "value": 12,
+          "name": "12"
+        }
+      ]
+    },
+    {
+      "key": "moderate_activity_hours",
+      "type": "select",
+      "titleMap": [
+        {
+          "value": 1,
+          "name": "Up to 1 hour per week"
+        },
+        {
+          "value": 2,
+          "name": "Between 1-2 hours per week"
+        },
+        {
+          "value": 3,
+          "name": "Between 2-3 hours per week"
+        },
+        {
+          "value": 4,
+          "name": "Between 3-4 hours per week"
+        },
+        {
+          "value": 5,
+          "name": "More than 4 hours per week"
+        }
+      ],
+      "condition": "response.moderate_activity_months >= 1"
+    },
+    {
+      "key": "vigorous_activity_months",
+      "type": "select",
+      "titleMap": [
+        {
+          "value": 0,
+          "name": "0"
+        },
+        {
+          "value": 1,
+          "name": "1"
+        },
+        {
+          "value": 1,
+          "name": "1"
+        },
+        {
+         "value": 2,
+         "name": "2"
+        },
+        {
+          "value": 3,
+          "name": "3"
+        },
+        {
+          "value": 4,
+          "name": "4"
+        },
+        {
+          "value": 5,
+          "name": "5"
+        },
+        {
+          "value": 6,
+          "name": "6"
+        },
+        {
+          "value": 7,
+          "name": "7"
+        },
+        {
+         "value": 8,
+         "name": "8"
+        },
+        {
+          "value": 9,
+         "name": "9"
+        },
+        {
+          "value": 10,
+          "name": "10"
+        },
+        {
+          "value": 11,
+          "name": "11"
+        },
+        {
+          "value": 12,
+          "name": "12"
+        }
+      ]
+    },
+    {
+      "key": "vigorous_activity_hours",
+      "type": "select",
+      "titleMap": [
+         {
+          "value": 1,
+          "name": "Up to 1 hour per week"
+        },
+        {
+          "value": 2,
+          "name": "Between 1-2 hours per week"
+        },
+        {
+          "value": 3,
+          "name": "Between 2-3 hours per week"
+        },
+        {
+          "value": 4,
+          "name": "Between 3-4 hours per week"
+        },
+        {
+          "value": 5,
+          "name": "More than 4 hours per week"
+        }
+      ],
+      "condition": "response.vigorous_activity_months >= 1"
+    },
+    {
+      "type": "submit",
+      "style": "btn-info",
+      "title": "Next"
+    }
+  ],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "moderate_activity_months": {
+        "title": "Over the past 12 months, in how many months, if any, did you do any kind of moderate physical activity?",
+        "type": "number",
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "moderate_activity_hours": {
+        "title": "During those months, on average, about how many hours per week did you do moderate physical activities?",
+        "type": "number",
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "vigorous_activity_months": {
+        "title": "Over the past 12 months, in how many months, if any, did you do any kind of vigorous physical activity?",
+        "type": "number",
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "vigorous_activity_hours": {
+        "title": "During those months, on average, about how many hours per week did you do vigorous physical activities?",
+        "type": "number",
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "required": [
+      "moderate_activity_months",
+      "moderate_activity_hours",
+      "vigorous_activity_months",
+      "vigorous_activity_hours"
+    ]
+  }
+}
+

@@ -1,0 +1,30 @@
+<div ng-controller="TestResultsCtrl" id="test-results">
+  <div class="alert alert-info">
+      <strong>Info!</strong> Please click the date to get more details.
+  </div>
+  <table st-table="rowCollection" class="table table-striped">
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Absolute Risk %(5Y)</th>
+      <th>Absolute Risk %(10Y)</th>
+      <th>Absolute Risk %(life)</th>
+      <th>Average Risk %(5Y)</th>
+      <th>Average Risk %(10Y)</th>
+      <th>Average Risk %(life)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in rowCollection">
+      <td><a href='#/risk-results' ng-click='changeScopeTime(row.date)'>{{row.date}}</a></td>
+      <td>{{row.absRsk5}}</td>
+      <td>{{row.absRsk10}}</td>
+      <td>{{row.absRsklife}}</td>
+      <td>{{row.avgRsk5}}</td>
+      <td>{{row.avgRsk10}}</td>
+      <td>{{row.avgRsklife}}</td>
+<!--       <td><a ng-href="mailto:{{row.email}}">email</a></td> -->
+    </tr>
+    </tbody>
+  </table>
+</div>

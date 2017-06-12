@@ -1,0 +1,368 @@
+{
+  "form": [
+    {
+      "type": "help",
+      "helpvalue": "<h3>Section 1: Demographics<h3>"
+    },
+    {
+      "key": "hispanic",
+      "type": "radios-inline",
+      "titleMap": [
+        {
+          "value": 3,
+          "name": "Yes"
+        },
+        {
+          "value": 0,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "key": "race",
+      "type": "radios",
+      "titleMap": [
+        {
+          "value": 1,
+          "name": "White"
+        },
+        {
+          "value": 2,
+          "name": "Black or African-American"
+        },
+        {
+          "value": 4,
+          "name": "Asian or Pacific Islander"
+        }
+      ],
+      "condition": "response.hispanic == 0"
+    },
+    {
+      "key": "age",
+      "type": "select",
+      "titleMap": [
+        {
+          "value": 50,
+          "name": "50"
+        },
+        {
+          "value": 51,
+          "name": "51"
+        },
+        {
+          "value": 52,
+          "name": "52"
+        },
+        {
+          "value": 53,
+          "name": "53"
+        },
+        {
+          "value": 54,
+          "name": "54"
+        },
+        {
+          "value": 55,
+          "name": "55"
+        },
+        {
+          "value": 56,
+          "name": "56"
+        },
+        {
+          "value": 57,
+          "name": "57"
+        },
+        {
+          "value": 58,
+          "name": "58"
+        },
+        {
+          "value": 59,
+          "name": "59"
+        },
+        {
+          "value": 60,
+          "name": "60"
+        },
+        {
+          "value": 61,
+          "name": "61"
+        },
+        {
+          "value": 62,
+          "name": "62"
+        },
+        {
+          "value": 63,
+          "name": "63"
+        },
+        {
+          "value": 64,
+          "name": "64"
+        },
+        {
+          "value": 65,
+          "name": "65"
+        },
+        {
+          "value": 66,
+          "name": "66"
+        },
+        {
+          "value": 67,
+          "name": "67"
+        },
+        {
+          "value": 68,
+          "name": "68"
+        },
+        {
+          "value": 69,
+          "name": "69"
+        },
+        {
+          "value": 70,
+          "name": "70"
+        }
+      ]
+    },
+    {
+      "key": "gender",
+      "type": "radios-inline",
+      "titleMap": [
+        {
+          "value": "Male",
+          "name": "Male"
+        },
+        {
+          "value": "Female",
+          "name": "Female"
+        }
+      ]
+    },
+    {
+      "key": "height_feet",
+      "type": "select",
+      "titleMap": [
+        {
+          "value": 0,
+          "name": "0"
+        },
+        {
+          "value": 1,
+          "name": "1"
+        },
+        {
+          "value": 2,
+          "name": "2"
+        },
+        {
+          "value": 3,
+          "name": "3"
+        },
+        {
+          "value": 4,
+          "name": "4"
+        },
+        {
+          "value": 5,
+          "name": "5"
+        },
+        {
+          "value": 6,
+          "name": "6"
+        },
+        {
+          "value": 7,
+          "name": "7"
+        },
+        {
+          "value": 8,
+          "name": "8"
+        },
+        {
+          "value": 9,
+          "name": "9"
+        },
+        {
+          "value": 10,
+          "name": "10"
+        },
+        {
+          "value": 11,
+          "name": "11"
+        }
+      ]
+    },
+    {
+      "key": "height_inches",
+      "type": "select",
+      "titleMap": [
+        {
+          "value": 1,
+          "name": "1"
+        },
+        {
+          "value": 2,
+          "name": "2"
+        },
+        {
+          "value": 3,
+          "name": "3"
+        },
+        {
+          "value": 4,
+          "name": "4"
+        },
+        {
+          "value": 5,
+          "name": "5"
+        },
+        {
+          "value": 6,
+          "name": "6"
+        },
+        {
+          "value": 7,
+          "name": "7"
+        },
+        {
+          "value": 8,
+          "name": "8"
+        },
+        {
+          "value": 9,
+          "name": "9"
+        },
+        {
+          "value": 10,
+          "name": "10"
+        },
+        {
+          "value": 11,
+          "name": "11"
+        }
+      ]
+    },
+    {
+      "key": "weight"
+    },
+    {
+      "type": "submit",
+      "style": "btn-info",
+      "title": "Next"
+    }
+  ],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "hispanic": {
+        "title": "Do you consider yourself to be Hispanic or Latino?",
+        "type": "number",
+        "enum": [
+          3,
+          0
+        ]
+      },
+      "race": {
+        "title": "Which of the following do you consider yourself to be?",
+        "type": "number",
+        "enum": [
+          1,
+          2,
+          4
+        ]
+      },
+      "age": {
+        "title": "What is your age? ",
+        "type": "number",
+        "enum": [
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75
+        ],
+        "description": "<b>NOTE: This tool calculates risk for men and women 50 to 85 years of age.</b>"
+      },
+      "gender": {
+        "title": "What is your sex?",
+        "type": "string",
+        "enum": [
+          "Male",
+          "Female"
+        ]
+      },
+      "height_feet": {
+        "title": "What is your height without shoes? (feet)",
+        "type": "number",
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "height_inches": {
+        "title": "What is your height without shoes? (inches)",
+        "type": "number",
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "weight": {
+        "title": "What is your weight without shoes? (lbs)",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "hispanic",
+      "race",
+      "age",
+      "gender",
+      "height_feet",
+      "height_inches",
+      "weight"
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "form": [
+    {
+      "type": "help",
+      "helpvalue": "<h3>Section 3: Medical History<h3>"
+    },
+    {
+      "key": "colon_sigmo",
+      "type": "radios",
+      "titleMap": [
+        {
+          "value": -1,
+          "name": "Yes"
+        },
+        {
+          "value": 1,
+          "name": "No"
+        },
+        {
+          "value": 3,
+          "name": "I don't know"
+        }
+      ]
+    },
+    {
+      "key": "polyp",
+      "type": "radios",
+      "titleMap": [
+        {
+          "value": 2,
+          "name": "Yes"
+        },
+        {
+          "value": 0,
+          "name": "No"
+        },
+        {
+          "value": 3,
+          "name": "I don't know"
+        }
+      ],
+      "condition": "response.colon_sigmo == -1"
+    },
+    {
+      "type": "submit",
+      "style": "btn-info",
+      "title": "Next"
+    }
+  ],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "colon_sigmo": {
+        "title": "During the past 10 years, did you have a colonoscopy, sigmoidoscopy, or both?",
+        "type": "number",
+        "enum": [
+          -1,
+          1,
+          3
+        ]
+      },
+      "polyp": {
+        "title": "In the past 10 years did a healthcare provider tell you that you had a colon or rectal polyp?",
+        "type": "number",
+        "enum": [
+          2,
+          0,
+          3
+        ]
+      }
+    },
+    "required": [
+      "colon_sigmo",
+      "polyp"
+    ]
+  }
+}

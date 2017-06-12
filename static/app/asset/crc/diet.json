@@ -1,0 +1,108 @@
+{
+  "form": [
+    {
+      "type": "help",
+      "helpvalue": "<h3>Section 2: Diet<h3>"
+    },
+    {
+      "key": "vegetables_serving",
+      "type": "select",
+      "titleMap": [
+        {
+          "value": 0,
+          "name": "None"
+        },
+        {
+          "value": 1,
+          "name": "Less than 1 serving per week"
+        },
+        {
+          "value": 2,
+          "name": "1-2 servings per week"
+        },
+        {
+          "value": 4,
+          "name": "3-4 servings per week"
+        },
+        {
+          "value": 6,
+          "name": "5-6 servings per week"
+        },
+        {
+          "value": 10,
+          "name": "7-10 servings per week"
+        },
+        {
+          "value": 11,
+          "name": "More than 10 servings per week"
+        }
+      ]
+    },
+    {
+      "key": "vegetables_serving_size",
+      "type": "select",
+      "titleMap": [
+        {
+          "value": "1/2 cup or less",
+          "name": "1/2 cup or less"
+        },
+        {
+          "value": "Between 1/2 cup and 1 1/2 cups",
+          "name": "Between 1/2 cup and 1 1/2 cups"
+        },
+        {
+          "value": "Between 1 1/2 cup and 3 cups",
+          "name": "Between 1 1/2 cup and 3 cups"
+        },
+        {
+          "value": "Between 3 cup and 5 cups",
+          "name": "Between 3 cup and 5 cups"
+        },
+        {
+          "value": "More than 5 cups",
+          "name": "More than 5 cups"
+        }
+      ],
+      "condition" : "response.vegetables_serving != 0"
+    },
+    {
+      "type": "submit",
+      "style": "btn-info",
+      "title": "Next"
+    }
+  ],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "vegetables_serving": {
+        "title": "1. In the past 30 days, about how many servings per week of vegetables or leafy green salads did you eat?",
+        "type": "number",
+        "enum": [
+          0,
+          1,
+          2,
+          4,
+          6,
+          10,
+          11
+        ],
+        "description": "NOTE: If you have eaten vegetables in the past 30 days, you will define serving size in the next question."
+      },
+      "vegetables_serving_size": {
+        "title": "2. In the past 30 days, how much did you usually eat in each serving of vegetables or leafy green salads?",
+        "type": "string",
+        "enum": [
+          "1/2 cup or less",
+          "Between 1/2 cup and 1 1/2 cups",
+          "Between 1 1/2 cup and 3 cups",
+          "Between 3 cup and 5 cups",
+          "More than 5 cups"
+        ]
+      }
+    },
+    "required": [
+      "vegetables_serving",
+      "vegetables_serving_size"
+    ]
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "form": [
+    {
+      "type": "help",
+      "helpvalue": "<h3>Section 6: Miscellaneous<h3>"
+    },
+    {
+      "key": "periods",
+      "type": "radios",
+      "titleMap": [
+        {
+          "value": -9,
+          "name": "Yes"
+        },
+        {
+          "value": -1,
+          "name": "No"
+        }
+      ]
+    },
+    {
+      "key": "last_period",
+      "type":"select",
+      "titleMap": [
+        {
+          "value": -9,
+          "name": "1 year ago or less"
+        },
+        {
+          "value": -9,
+          "name": "More than 1 year ago but less than 2 years ago"
+        },
+        {
+          "value": -1,
+          "name": "2 year ago or more"
+        }
+      ],
+      "condition": "response.periods == -1"
+    },
+    {
+      "key": "female_hormones",
+      "type": "radios",
+      "titleMap": [
+        {
+          "value": 0,
+          "name": "Yes"
+        },
+        {
+          "value": 1,
+          "name": "No"
+        }
+      ],
+      "condition": "response.periods == -1 && response.last_period == -1"
+    },
+    {
+      "type": "submit",
+      "style": "btn-info",
+      "title": "Next"
+    }
+  ],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "periods": {
+        "title": "Do you still have periods?",
+        "type": "number",
+        "enum": [
+            -9,
+            -1
+        ]
+    },
+      "last_period": {
+        "title": "When did you have your last period?",
+        "type": "number",
+        "enum": [
+            -9,
+            -9,
+            -1
+        ]
+      },
+      "female_hormones": {
+        "title": "During the past 2 years, have you used estrogen, progestin, or other female hormones?",
+        "type": "number",
+        "enum": [
+            0,
+            1
+        ],
+        "description": "Note: These hormones may be given as hormone pills, oral contraceptives, shots, skin patches, vaginal creams, or as vaginal suppositories."
+      }
+    },
+    "required": [
+      "periods",
+      "last_period",
+      "female_hormones"
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CRC Risk App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content=""/>
+  <meta property="og:type" content=""/>
+  <meta property="og:url" content=""/>
+  <meta property="og:image" content="" />
+  <meta property="og:site_name" content=""/>
+  <meta property="og:description" content=""/>
+  <link rel="stylesheet" href="/static/app/bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="/static/app/bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="/static/app/bower_components/font-awesome/css/font-awesome.css">
+
+  <link rel="stylesheet" href="/static/app/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="/static/app/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+
+  <link rel="stylesheet" href="/static/app/bower_components/angular-loading-bar/build/loading-bar.min.css">
+
+
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine|Open+Sans|Work+Sans">
+
+
+  <link rel="stylesheet" href="/static/app/css/app.css">
+  <link rel="stylesheet" href="/static/app/css/typesettings-1.1-min.css">
+
+  <script src="/static/app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="/static/app/bower_components/jquery/dist/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src='/static/app/config.js'></script><!-- 
+  <script type="text/javascript" src='/static/app/js/fixed_navbar.js'></script> -->
+
+</head>
+  <body ng-app="CRCRiskApp" ng-controller="GlobalCtrl">
+   <!--[if lt IE 8]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">&nbsp;</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          {% if not session.logged_in %}
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/login">Login</a></li>
+            </ul>
+          {% else %}
+            <ul class="nav navbar-nav ">
+            <li id="about" class="active"><a href="#welcome">Welcomme</a></li>
+            <!-- <li id="risk" ><a href="#risk">CRC Risk Assessment</a></li> -->
+            <li id="testresults" ><a href="#test-results">Test Results</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <!-- <li><a href="/logout">Welcome {{ session.user_name }}</a></li> -->
+              <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Welcome {{ session.user_name }}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="#/user">Update Information</a></li>
+              </ul>
+              </li>
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+  {% block content %}
+  {% endblock content %}
+  </body>
+</html>

@@ -1,0 +1,77 @@
+{
+  "form": [
+    {
+      "type": "help",
+      "helpvalue": "<h3>Section 7: Family<h3>"
+    },
+    {
+      "key": "cancer_relatives",
+      "type":"select",
+      "titleMap": [
+        {
+          "value": -1,
+          "name": "Yes"
+        },
+        {
+          "value": 0,
+          "name": "No"
+        },
+        {
+          "value": -9,
+          "name": "I don't know"
+        }
+      ]
+    },
+    {
+      "key": "num_cancer_relatives",
+      "type":"select",
+      "titleMap": [
+        {
+          "value": 1,
+          "name": "1"
+        },
+        {
+          "value": 2,
+          "name": "2 or more"
+        },
+        {
+          "value": -8,
+          "name": "I don't know"
+        }
+      ],
+      "condition": "response.cancer_relatives == -1"
+    },
+    {
+      "type": "submit",
+      "style": "btn-info",
+      "title": "Submit"
+    }
+  ],
+  "schema": {
+    "type": "object",
+    "properties": {
+      "cancer_relatives": {
+        "title": "Think only about your biological mother and father, full brothers and sisters, and your biological sons or daughters. At any time in their lives, did any of these relatives ever have cancer of the colon or rectum (cancer of the lower intestine)? ",
+        "type": "number",
+        "enum": [
+          -1,
+          0,
+          -9
+        ]
+      },
+      "num_cancer_relatives": {
+        "title": "How many of these relatives had cancer of the colon or rectum (cancer of the lower intestine)?",
+        "type": "number",
+        "enum": [
+          1,
+          2,
+          -8
+        ]
+    }
+    },
+    "required": [
+      "cancer_relatives",
+      "num_cancer_relatives"
+    ]
+  }
+}

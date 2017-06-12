@@ -1,0 +1,14 @@
+<div ng-controller="CRCRiskCtrl" id="crc-risk">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="error" ng-show="error">{{error}}</div>
+      <div ng-show="responseForm.$valid"><em>Form is valid</em></div>
+      <div ng-show="responseForm.$invalid"><em>Form is not valid</em></div>
+      <h3>Model</h3>
+      <pre ng-cloak>{{pretty()}}</pre>
+    </div>
+    <div class="col-md-9">
+      <form name="responseForm" sf-options="{ destroyStrategy: 'remove'}" sf-schema="schema" sf-form="form" sf-model="response" ng-submit="submit(responseForm)"></form>
+    </div>
+  </div>
+</div>
