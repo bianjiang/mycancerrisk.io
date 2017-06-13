@@ -1,34 +1,11 @@
 # CRC Risk Assessment Web Application
 
-This is a facebook web application for assessing colorectal cancer risk. And the basic framework is set up with Flask, AngularJS abd MongoDB. It has been set up on server, and here, we will give an example using nginx and gunicorn.
+This is a Facebook web application for assessing colorectal cancer risk. And the basic framework is set up with Flask, AngularJS abd MongoDB. The web server is setup with `nginx` and `gunicorn`.
 
-## Getting Started
 
-In this section, I will get you a copy of the project up and running on your local machine for development and testing purposes.
+## Setup server environment and deployment
 
-1  Copy the whole repository on your local machine
-```
-$ Git clone + HTTPS
-```
-2  Copy the whole repository on your local machine
-```
-$ pip install -r requirements.txt
-```
-3   Install python flask, pymongo and Flask-OAuthlib
-```
-$ cd static
-```
-4 Go into 'static' folder
-```
-$ npm install -g bower
-```
-5   Install all nodejs packges
-```
-$ bower install
-```
-## Installing and Deployment
-
-#### Install Software(on Linux):
+#### Install Python3, NodeJS (and npm), MongoDB, nginx, and Gunicorn (on Ubuntu 16.04):
 ##### Python3  (pip is default installed in python3)
 
 ```
@@ -231,9 +208,27 @@ $ bower install
             $ sudo service nginx start
             $ sudo service nginx stop
 
-##### Set up keys for Secret.py and config.py
-1. Create Secret.py file and put the aws_access_key_id and aws_secret_access_key
-2. Create config.py file and it looks like this:
+
+##### Download and setup the CRC Risk App
+
+1  Clone the project onto the server
+```
+$ git clone https://github.com/bianjiang/mycancerrisk.io.git
+```
+2  Install required python packages: Python-Flask, PyMongo and Flask-OAuthlib
+```
+$ pip install -r requirements.txt
+```
+3  The javascript packages are managed with `bower`.  To install javascript packages, 
+```
+$ npm install -g bower
+$ cd static
+$ bower install
+```
+
+##### Set up keys in `secret.py` and `config.py`
+1. Rename the `secret.py.template` to `secret.py` and add the correct the aws_access_key_id and aws_secret_access_key (for email notification)
+2. Rename the `config.py.template` to `config.py`, add your FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, and FACEBOOK_APP_ACCESS_TOKEN (you need to register an app on Facebook to use Facebook API, see https://developers.facebook.com/).
     ```
     DEBUG = True
     FACEBOOK_APP_ID = xxxxxxxxxx
@@ -243,7 +238,7 @@ $ bower install
     ```
 
 
-## Running the tests
+## Start the app
 
 1. Start MongoDB
 
