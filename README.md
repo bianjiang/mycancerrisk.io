@@ -20,14 +20,14 @@ In this section, I will get you a copy of the project up and running on your loc
 
 ### Installing and Deployment
 
-## Python3  ('pip is default installed in python3')
+#### Python3  ('pip is default installed in python3')
     Install on Linux:
     ```
         1. $ sudo apt-get update
         2. $ sudo apt-get install python3.6
     ```
 
-## Nodejs + npm (Node.js is included in Ubuntu (13.04 and higher))
+#### Nodejs + npm (Node.js is included in Ubuntu (13.04 and higher))
     Install on Linux:
     ```
         1. $ sudo apt-get update
@@ -35,9 +35,9 @@ In this section, I will get you a copy of the project up and running on your loc
         3. $ sudo apt-get install npm
     ```
 
-## MongoDB
+#### MongoDB
    Install on Linux:
-   ```
+    ```
         1. $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
         2. $ echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
         3. $ sudo apt-get update
@@ -49,19 +49,19 @@ In this section, I will get you a copy of the project up and running on your loc
         2)  Stop MongoDB
         * $ sudo service mongod stop
 
-## Niginx
+#### Niginx
     Linux:
         ```
         1. $ sudo apt-get update
         2. $ sudo apt-get install nginx
         ```
 
-## Gunicorn
+#### Gunicorn
      Install on Linux:
      * $ sudo apt-get update
      * $ sudo apt-get install gunicorn
 
-## Create a Self-Signed SSL Certificate for Nginx
+#### Create a Self-Signed SSL Certificate for Nginx
     Step 1:Create the SSL Certificate
        * $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
        * $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
@@ -203,7 +203,7 @@ In this section, I will get you a copy of the project up and running on your loc
             $ sudo service nginx start
             $ sudo service nginx stop
             ```
-## Secret.py and config.py
+#### Secret.py and config.py
     Create Secret.py file and put the aws_access_key_id and aws_secret_access_key in it
     Create config.py file and it looks like this:
     ```
@@ -221,7 +221,6 @@ In this section, I will get you a copy of the project up and running on your loc
       * $ sudo service mongod start
       3. Start Nginx
       * $ sudo service nginx start
-
       4. Run Gunicron
       * $ gunicorn run:CRCRiskApp -w 4 --daemon
       5. test on server_domain_or_IP
