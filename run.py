@@ -22,7 +22,6 @@ def homepage():
 
 if __name__ == '__main__':
     # sched = BackgroundScheduler()
-    # sched.add_job(notification.notify, 'interval', weeks=2)
-    # sched.start()
-    # atexit.register(lambda: sched.shutdown(wait=False))
+    # sched.add_job(notification.notify, 'interval', seconds = 10)
+    # sched.starct()
     CRCRiskApp.run(debug=True)
