@@ -25,4 +25,4 @@ if __name__ == '__main__':
     # sched.add_job(notification.notify, 'interval', weeks=2)
     # sched.start()
     # atexit.register(lambda: sched.shutdown(wait=False))
-    CRCRiskApp.run(debug=True)
+    CRCRiskApp.run(debug = True)
