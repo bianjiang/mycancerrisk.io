@@ -39,6 +39,7 @@ def login():
         next=request.args.get('next') or request.referrer or None,
         _external=True
     )
+    current_app.logger.info(callback)
     return facebook.authorize(callback=callback)
 
 
