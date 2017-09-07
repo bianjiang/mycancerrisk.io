@@ -37,7 +37,8 @@ def login():
     callback = url_for(
         'fb_auth.facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
-        _external=True
+        _external=True,
+	_scheme='https'
     )
     current_app.logger.info(callback)
     return facebook.authorize(callback=callback)
