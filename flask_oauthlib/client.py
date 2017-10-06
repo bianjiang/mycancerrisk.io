@@ -368,13 +368,17 @@ class OAuthRemoteApp(object):
         uri, headers, data, method = prepare_request(
             uri, headers, data, method
         )
-
+        log.warning('http_request_uri: ' + uri)
+        log.warning(headers)
+        log.warning(data)
+        log.warning('http_request_method: ' + method)
         log.debug('Request %r with %r method' % (uri, method))
         req = http.Request(uri, headers=headers, data=data)
         req.get_method = lambda: method.upper()
         try:
             resp = http.urlopen(req)
             content = resp.read()
+            log.warning(content)
             resp.close()
             return resp, content
         except http.HTTPError as resp:
@@ -645,14 +649,11 @@ class OAuthRemoteApp(object):
             qs = client.prepare_request_body(**remote_args)
             url = self.expand_url(self.access_token_url)
             url += ('?' in url and '&' or '?') + qs
-            log.warning('request_access_token_url: ' + url)
             resp, content = self.http_request(
                 url,
                 headers=headers,
                 method=self.access_token_method,
             )
-            log.warning(resp)
-            log.warning(content)
         else:
             raise OAuthException(
                 'Unsupported access_token_method: %s' %
