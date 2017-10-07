@@ -660,9 +660,7 @@ class OAuthRemoteApp(object):
                 'Unsupported access_token_method: %s' %
                 self.access_token_method
             )
-        log.warning(content)
         data = parse_response(resp, content, content_type=self.content_type)
-        log.warning(data)
         if resp.code not in (200, 201):
             raise OAuthException(
                 'Invalid response from %s' % self.name,
@@ -684,7 +682,7 @@ class OAuthRemoteApp(object):
             data = self.handle_oauth2_response(args)
         else:
             data = self.handle_unknown_response()
-        log.warning(data)
+
         # free request token
         session.pop('%s_oauthtok' % self.name, None)
         session.pop('%s_oauthredir' % self.name, None)

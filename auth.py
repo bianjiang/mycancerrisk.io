@@ -58,7 +58,7 @@ def facebook_authorized():
     # current_app.logger.info(session['oauth_token'])
     session['logged_in'] = True
     # me = facebook.get('/me') # get user info (id, uname)
-
+    current_app.logger.info(session['oauth_token'])
     graph = fb.GraphAPI(resp['access_token'])
     args = {'fields' : 'id,name,email', }
     profile = graph.get_object('me', **args)
