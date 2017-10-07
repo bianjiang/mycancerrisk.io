@@ -3,6 +3,7 @@ import config
 from flask_oauthlib.client import OAuth, OAuthException
 from flask import current_app
 import facebook as fb
+import json
 # from facepy import GraphAPI
 # from apscheduler.schedulers.background import BackgroundScheduler
 # import atexit
@@ -59,10 +60,11 @@ def facebook_authorized():
     session['logged_in'] = True
     # me = facebook.get('/me') # get user info (id, uname)
     current_app.logger.info(session['oauth_token'])
-    graph = fb.GraphAPI(resp['access_token'])
+    # graph = fb.GraphAPI(resp['access_token'])
     args = {'fields' : 'id,name,email', }
-    current_app.logger.info(args)
-    profile = graph.get_object('me', **args)
+    r, profile = facebook.http_request('https://graph.facebook.com/me?fields=id%2Cname&access_token=' + session['oauth_token'][0], method="GET")
+    # profile = graph.get_object('me', **args)
+    profile = json.loads(profile.decode("utf-8"))
     current_app.logger.info(profile)
     session['user_name'] = profile['name']
     session['id'] = profile['id']
