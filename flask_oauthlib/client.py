@@ -372,8 +372,6 @@ class OAuthRemoteApp(object):
         proxy_support = http.ProxyHandler({"https" : "https://proxe.shands.ufl.edu:3128"})
         opener = http.build_opener(proxy_support, authinfo)
         http.install_opener(opener)
-        resp = http.urlopen(uri)
-        log.warning(resp.read())
         log.warning('http_request_uri: ' + uri)
         log.warning('http_request_method: ' + method)
         log.debug('Request %r with %r method' % (uri, method))
