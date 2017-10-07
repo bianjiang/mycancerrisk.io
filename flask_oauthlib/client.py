@@ -380,7 +380,6 @@ class OAuthRemoteApp(object):
         try:
             resp = http.urlopen(req)
             content = resp.read()
-            log.warning(content)
             resp.close()
             return resp, content
         except http.HTTPError as resp:
@@ -661,7 +660,7 @@ class OAuthRemoteApp(object):
                 'Unsupported access_token_method: %s' %
                 self.access_token_method
             )
-
+        log.warning(content)
         data = parse_response(resp, content, content_type=self.content_type)
         if resp.code not in (200, 201):
             raise OAuthException(
