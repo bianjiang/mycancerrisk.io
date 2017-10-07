@@ -369,14 +369,12 @@ class OAuthRemoteApp(object):
             uri, headers, data, method
         )
         log.warning('http_request_uri: ' + uri)
-        log.warning(headers)
-        log.warning(data)
         log.warning('http_request_method: ' + method)
         log.debug('Request %r with %r method' % (uri, method))
         req = http.Request(uri, headers=headers, data=data)
         req.get_method = lambda: method.upper()
         try:
-            resp = http.urlopen(req)
+            resp = http.urlopen(uri)
             content = resp.read()
             log.warning(content)
             resp.close()
