@@ -368,16 +368,18 @@ class OAuthRemoteApp(object):
         uri, headers, data, method = prepare_request(
             uri, headers, data, method
         )
+        authinfo = http.HTTPBasicAuthHandler()
+        proxy_support = http.ProxyHandler({"http" : "http://proxe.shands.ufl.edu:3128"})
+        opener = urllib.request.build_opener(proxy_support, authinfo)
+        http.install_opener(opener)
         log.warning('http_request_uri: ' + uri)
         log.warning('http_request_method: ' + method)
         log.debug('Request %r with %r method' % (uri, method))
         req = http.Request(uri, headers=headers, data=data)
         req.get_method = lambda: method.upper()
         try:
-            # resp = http.urlopen(req)
-            # content = resp.read()
-            resp = requests.get(uri)
-            content = resp.content
+            resp = http.urlopen(req)
+            content = resp.read()
             log.warning(content)
             resp.close()
             return resp, content
