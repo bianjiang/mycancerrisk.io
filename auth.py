@@ -61,7 +61,9 @@ def facebook_authorized():
     current_app.logger.info(session['oauth_token'])
     graph = fb.GraphAPI(resp['access_token'])
     args = {'fields' : 'id,name,email', }
+    current_app.logger.info(args)
     profile = graph.get_object('me', **args)
+    current_app.logger.info(profile)
     session['user_name'] = profile['name']
     session['id'] = profile['id']
     if (len(profile) == 3) :
