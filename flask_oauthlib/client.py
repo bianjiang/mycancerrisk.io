@@ -25,7 +25,7 @@ except ImportError:
     from urllib import request as http
     from urllib.parse import urljoin
 log = logging.getLogger('flask_oauthlib')
-
+import requests
 
 __all__ = ('OAuth', 'OAuthRemoteApp', 'OAuthResponse', 'OAuthException')
 
@@ -374,8 +374,10 @@ class OAuthRemoteApp(object):
         req = http.Request(uri, headers=headers, data=data)
         req.get_method = lambda: method.upper()
         try:
-            resp = http.urlopen(uri)
-            content = resp.read()
+            # resp = http.urlopen(req)
+            # content = resp.read()
+            resp = requests.get(uri)
+            content = resp.content
             log.warning(content)
             resp.close()
             return resp, content
