@@ -46,7 +46,9 @@ def login():
 
 @fb_auth.route('/login/authorized')
 def facebook_authorized():
+    current_app.logger.info('authorizing process start:')
     resp = facebook.authorized_response()
+    current_app.logger.info(resp)
     if resp is None:
         return 'Access denied: reason=%s error=%s' % (
             request.args['error_reason'],
@@ -59,7 +61,6 @@ def facebook_authorized():
     # current_app.logger.info(session['oauth_token'])
     session['logged_in'] = True
     # me = facebook.get('/me') # get user info (id, uname)
-    current_app.logger.info(session['oauth_token'])
     # graph = fb.GraphAPI(resp['access_token'])
     args = {'fields' : 'id,name,email', }
     r, profile = facebook.http_request('https://graph.facebook.com/me?fields=id%2Cname&access_token=' + session['oauth_token'][0], method="GET")
