@@ -46,6 +46,7 @@ def login():
 
 @fb_auth.route('/login/authorized')
 def facebook_authorized():
+    current_app.logger.info(request)
     current_app.logger.info('authorizing process start:')
     resp = facebook.authorized_response()
     current_app.logger.info(resp)
