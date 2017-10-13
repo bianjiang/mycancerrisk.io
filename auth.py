@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify, render_template, url_for, session, re
 import config
 from flask_oauthlib.client import OAuth, OAuthException
 from flask import current_app
-import facebook as fb
 import json
 # from facepy import GraphAPI
 # from apscheduler.schedulers.background import BackgroundScheduler
