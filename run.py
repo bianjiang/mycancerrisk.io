@@ -20,7 +20,7 @@ CRCRiskApp.register_blueprint(userinfo);
 gunicorn_error_logger = logging.getLogger('gunicorn.error')
 CRCRiskApp.logger.handlers.extend(gunicorn_error_logger.handlers)
 CRCRiskApp.logger.setLevel(logging.DEBUG)
-CRCRiskApp.logger.debug('start')
+
 
 def notify():
     for user in db.testUser.find():
@@ -37,8 +37,8 @@ def homepage():
 
 
 if __name__ == '__main__':
+    CRCRiskApp.logger.debug('start')
     sched = BackgroundScheduler()
     sched.add_job(notify, 'interval', seconds = 10)
     sched.start()
-    CRCRiskApp.logger.debug('main')
     CRCRiskApp.run(debug = True)
