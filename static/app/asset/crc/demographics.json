@@ -142,106 +142,102 @@
       ]
     },
     {
-      "key": "height_feet",
-      "type": "select",
-      "titleMap": [
+      "type": "section",
+      "htmlClass": "row",
+      "items": [
         {
-          "value": 0,
-          "name": "0"
+          "key": "height_feet",
+          "type": "select",
+          "htmlClass": "col-xs-6",
+          "titleMap": [
+            {
+              "value": 2,
+              "name": "2"
+            },
+            {
+              "value": 3,
+              "name": "3"
+            },
+            {
+              "value": 4,
+              "name": "4"
+            },
+            {
+              "value": 5,
+              "name": "5"
+            },
+            {
+              "value": 6,
+              "name": "6"
+            },
+            {
+              "value": 7,
+              "name": "7"
+            },
+            {
+              "value": 8,
+              "name": "8"
+            },
+            {
+              "value": 9,
+              "name": "9"
+            }
+          ]
         },
         {
-          "value": 1,
-          "name": "1"
-        },
-        {
-          "value": 2,
-          "name": "2"
-        },
-        {
-          "value": 3,
-          "name": "3"
-        },
-        {
-          "value": 4,
-          "name": "4"
-        },
-        {
-          "value": 5,
-          "name": "5"
-        },
-        {
-          "value": 6,
-          "name": "6"
-        },
-        {
-          "value": 7,
-          "name": "7"
-        },
-        {
-          "value": 8,
-          "name": "8"
-        },
-        {
-          "value": 9,
-          "name": "9"
-        },
-        {
-          "value": 10,
-          "name": "10"
-        },
-        {
-          "value": 11,
-          "name": "11"
-        }
-      ]
-    },
-    {
-      "key": "height_inches",
-      "type": "select",
-      "titleMap": [
-        {
-          "value": 1,
-          "name": "1"
-        },
-        {
-          "value": 2,
-          "name": "2"
-        },
-        {
-          "value": 3,
-          "name": "3"
-        },
-        {
-          "value": 4,
-          "name": "4"
-        },
-        {
-          "value": 5,
-          "name": "5"
-        },
-        {
-          "value": 6,
-          "name": "6"
-        },
-        {
-          "value": 7,
-          "name": "7"
-        },
-        {
-          "value": 8,
-          "name": "8"
-        },
-        {
-          "value": 9,
-          "name": "9"
-        },
-        {
-          "value": 10,
-          "name": "10"
-        },
-        {
-          "value": 11,
-          "name": "11"
+          "key": "height_inches",
+          "type": "select",
+          "htmlClass": "col-xs-6",
+          "titleMap": [
+            {
+              "value": 0,
+              "name": "0"
+            },
+            {
+              "value": 1,
+              "name": "1"
+            },
+            {
+              "value": 2,
+              "name": "2"
+            },
+            {
+              "value": 3,
+              "name": "3"
+            },
+            {
+              "value": 4,
+              "name": "4"
+            },
+            {
+              "value": 5,
+              "name": "5"
+            },
+            {
+              "value": 6,
+              "name": "6"
+            },
+            {
+              "value": 7,
+              "name": "7"
+            },
+            {
+              "value": 8,
+              "name": "8"
+            },
+            {
+              "value": 9,
+              "name": "9"
+            },
+            {
+              "value": 10,
+              "name": "10"
+            },
+            {
+              "value": 11,
+              "name": "11"
+            }
+          ]
         }
       ]
     },
@@ -319,8 +315,6 @@
         "title": "What is your height without shoes? (feet)",
         "type": "number",
         "enum": [
-          0,
-          1,
           2,
           3,
           4,
@@ -328,15 +322,14 @@
           6,
           7,
           8,
-          9,
-          10,
-          11
+          9
         ]
       },
       "height_inches": {
         "title": "What is your height without shoes? (inches)",
         "type": "number",
         "enum": [
+          0,
           1,
           2,
           3,
@@ -352,7 +345,8 @@
       },
       "weight": {
         "title": "What is your weight without shoes? (lbs)",
-        "type": "integer"
+        "type": "integer",
+        "minimum": 1
       }
     },
     "required": [
