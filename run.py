@@ -4,9 +4,19 @@ from riskcalculator import riskcalculator
 from userinfo import userinfo
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
-import notification
+# import notification
 import logging
+from dbmongo import db
+import config, requests
 # import scheduald_email
+
+def notify():
+    for user in db.testUser.find():
+ # use app access token to send notificaitons
+        url = "https://graph.facebook.com/v2.10/" + user['id'] + "/notifications?access_token=" +config.FACEBOOK_APP_ACCESS_TOKEN + "&template='Please check your recent CRC cancer risk test result: http://mycancerrisk.io'"
+        # notification = notfi.put_object(parent_object=user['id'], connection_name='notifications',template='Please check your recent CRC cancer risk test result: http://mycancerrisk.io')
+        proxyDict = {"https" : "https://proxe.shands.ufl.edu:3128"}
+        r = requests.post(url)
 
 CRCRiskApp = Flask(__name__)
 CRCRiskApp.config.from_object('config')
@@ -26,6 +36,6 @@ def homepage():
 
 if __name__ == '__main__':
     sched = BackgroundScheduler()
-    sched.add_job(notification.notify, 'interval', seconds = 10)
+    sched.add_job(notify, 'interval', seconds = 10)
     sched.start()
     CRCRiskApp.run(debug = True)
