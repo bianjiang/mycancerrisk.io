@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, Blueprint, jsonify, current_app
+from flask import Flask, render_template, url_for, Blueprint, jsonify
 from auth import fb_auth
 from riskcalculator import riskcalculator
 from userinfo import userinfo
@@ -14,8 +14,6 @@ CRCRiskApp.register_blueprint(riskcalculator);
 # CRCRiskApp.register_blueprint(sch_email);
 CRCRiskApp.register_blueprint(userinfo);
 
-def test():
-     print('test')
 
 @CRCRiskApp.route('/', methods=['GET', 'POST'])
 def homepage():
@@ -24,7 +22,6 @@ def homepage():
 
 if __name__ == '__main__':
     sched = BackgroundScheduler()
-    # sched.add_job(notification.notify, 'interval', seconds = 10)
-    sched.add_job(test, 'interval', seconds = 10)
+    sched.add_job(notification.notify, 'interval', seconds = 10)
     sched.start()
     CRCRiskApp.run(debug = True)
