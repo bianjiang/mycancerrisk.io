@@ -15,6 +15,9 @@ CRCRiskApp.register_blueprint(riskcalculator);
 # CRCRiskApp.register_blueprint(sch_email);
 CRCRiskApp.register_blueprint(userinfo);
 
+@CRCRiskApp.route('/', methods=['GET', 'POST'])
+def homepage():
+    return render_template('index.aspx')
 
 sched = BackgroundScheduler()
 sched.add_job(notification.notify, 'interval', seconds = 604800)
