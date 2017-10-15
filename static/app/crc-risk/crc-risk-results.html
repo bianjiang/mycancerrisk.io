@@ -1,11 +1,10 @@
 <div id="crc-risk-results">
     <div class="row">
         <div class="col-md-6 risk_result_left">
-            <uib-tabset style="margin-top: 1em;">
+            <uib-tabset>
                 <uib-tab index="0" heading="5 year risk">
                     <br>
-                    <h3>What is my 5 year risk?</h3>
-                    <br>
+                    <p>What is my 5 year risk?</p>
                     <br>
                     <table st-table="rowCollection" class="table table-striped">
                         <thead>
@@ -22,15 +21,13 @@
                         </tbody>
                     </table>
                     <br>
-                    <br>
                     <p>Your <b>5 year risk</b> is estimated to be <b>{{rowCollection[0].absRsk5}}</b>.</p>
                     <br>
                     <p>This means your risk is <b>{{cmp5}} the average risk</b> for all {{race}} {{gender}} aged {{age}} - which is <b>approximately {{rowCollection[0].avgRsk5}}</b>.</p>
                 </uib-tab>
                 <uib-tab index="1" heading="10 year risk">
                     <br>
-                    <h3>What is my 10 year risk?</h3>
-                    <br>
+                    <p>What is my 10 year risk?</p>
                     <br>
                     <table st-table="rowCollection" class="table table-striped">
                         <thead>
@@ -47,15 +44,13 @@
                         </tbody>
                     </table>
                     <br>
-                    <br>
                     <p>Your <b>10 year risk</b> is estimated to be <b>{{rowCollection[0].absRsk10}}</b>.</p>
                     <br>
                     <p>This means your risk is <b>{{cmp10}} the average risk</b> for all {{race}} {{gender}} aged {{age}} - which is <b>approximately {{rowCollection[0].avgRsk10}}</b>.</p>
                 </uib-tab>
                 <uib-tab index="2" heading="Lifetime risk">
                     <br>
-                    <h3>What is my lifetime year risk?</h3>
-                    <br>
+                    <p>What is my lifetime year risk?</p>
                     <br>
                     <table st-table="rowCollection" class="table table-striped">
                         <thead>
@@ -71,7 +66,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <br>
                     <br>
                     <p>Your <b>life time risk</b> is estimated to be <b>{{rowCollection[0].absRsklife}}</b>.</p>
                     <br>

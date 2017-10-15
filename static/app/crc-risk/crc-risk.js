@@ -40,14 +40,20 @@ angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'
 
         var sections = ['demographics', 'diet', 'medical_history', 'medications', 'physical_activity', 'miscellaneous', 'family'];
         //var sections = ['diet'];
-
+        var previous_section = []
         var next_section = function (sectionId) {
+          previous_section.push(sectionId)
           $http.get('/static/app/asset/crc/' + sectionId + '.json').success(function(data) {
             $scope.error = null;
             $scope.loading = false;
             $scope.schema = data.schema;
             $scope.form = data.form;
-            $scope.response = {};
+            if(final_response[sectionId] != undefined) {
+              $scope.response = final_response[sectionId]
+            } else {
+              $scope.response = {}
+            }
+            console.log($scope.response)
             $scope.sectionId = sectionId;
             if(sectionId == 'demographics') {
               $scope.response = {'age': $scope.age};
@@ -69,20 +75,19 @@ angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'
                 console.log(responseForm.gender.value);
                 sections[4] = 'male_miscellaneous';
               }
-
+              console.log($scope.sectionId)
+              console.log($scope.response)
               final_response[$scope.sectionId] = $scope.response;
-
+              console.log(final_response)
 
               var next_sectionId = sections.shift();
               if (next_sectionId) {
                 if (next_sectionId == 'miscellaneous'){
                     next_sectionId = (final_response['demographics']['gender'] == 'Male')?'male_miscellaneous':'female_miscellaneous';
                 }
-
                 next_section(next_sectionId);
               }else{
                 // final
-
                 cfpLoadingBar.start();
                 $http({
                   method: 'POST',
@@ -105,6 +110,26 @@ angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'
             }
         }
 
+        $scope.goback = function() {
+              var current_section = previous_section.pop()
+              sections.unshift(current_section)
+              $http.get('/static/app/asset/crc/' + previous_section[previous_section.length-1] + '.json').success(function(data) {
+                $scope.error = null;
+                $scope.loading = false;
+                $scope.schema = data.schema;
+                $scope.form = data.form;
+                $scope.sectionId = previous_section[previous_section.length-1];
+                $scope.response = final_response[$scope.sectionId]
+              }).error(function() {
+                $scope.error = 'Failed to load...';
+              });
+        }
+        $scope.startover = function() {
+              sections = ['demographics', 'diet', 'medical_history', 'medications', 'physical_activity', 'miscellaneous', 'family'];
+              previous_section = [];
+              final_response = {}
+              next_section(sections.shift());
+        }
         next_section(sections.shift());
         $rootScope.$on('cfpLoadingBar:completed', function(event){
           console.log(event);

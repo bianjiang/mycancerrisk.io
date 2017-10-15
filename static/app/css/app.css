@@ -3,15 +3,15 @@
 body {
     color:#131516;
     font-family: 'Open Sans', 'Work Sans', 'Tangerine', serif;
-    /*font-size: 1 em;*/
+    font-size: 2rem;
     text-rendering: optimizeLegibility;
 }
 #about,#testresults,#crc-risk,#test-results,#userinfo,#crc-risk-results{
-  font-size: 1.375em;
+  font-size: 2rem;
 }
-.welcome {
+/*.welcome {
   font-size: 1.5em;
-}
+}*/
 #content {
     margin-top:100px;
 }
@@ -20,10 +20,10 @@ body {
   font-size: 1.4375em;
 }
 .consent_form_body h5,ul{
-  margin-left: 2%;
-  margin-right: 2%;
-  padding-left:2%;
-  font-size: 1.42em;
+  margin-left: 1%;
+  margin-right: 1%;
+  padding-left:1%;
+/*  font-size: 1.42em;*/
 }
 
 .consent_form {
@@ -37,16 +37,17 @@ body {
 
 }
 #content .jumbotron p{
-    font-size: 1.5em;
+    font-size: 2rem;
     /*text-align: center;*/
     /*background-color: white;*/
 }
 .panel-info {
   margin-top: 3%;
+  font-size: 2rem;
 }
 .welcome-bnt {
     margin-left: 42%;
-    font-size: 1.625em;
+    font-size: 2rem;
 }
 .close_bnt {
   float: right;
@@ -66,6 +67,7 @@ body {
 .img {
     background: url("../img/colon-cancer.jpg");
     height: 200px;
+    margin-bottom: 0.5em;
 }
 #about .tab-pane {
     padding: 2em;
@@ -112,11 +114,11 @@ p.read_more_p {
   display: inline;
 }
 .crc_factors {
-  margin-bottom: 0px;
+  margin-bottom: 1em;
   padding-left: 3%;
   padding-right: 3%;
-  padding-bottom: 0;
-  padding-top: 0;
+  padding-bottom: 3%;
+  padding-top: 3%;
 }
 
 .risk_result_left {
@@ -125,4 +127,26 @@ p.read_more_p {
 
 .risk_result_right {
   width: 62%;
+}
+
+
+.test_next_bnt {
+  float: right;
+  background-color: #657e65;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.test_previous_bnt {
+  float: left;
+  background-color: #657e65;
+  color: #fff;
+  font-size: 2rem;
+}
+.test_startover_bnt{
+  float: left;
+  background-color: #657e65;
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 25%;
 }

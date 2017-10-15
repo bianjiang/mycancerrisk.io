@@ -246,7 +246,7 @@
     },
     {
       "type": "submit",
-      "style": "btn-info",
+      "style": "test_next_bnt",
       "title": "Next"
     }
   ],

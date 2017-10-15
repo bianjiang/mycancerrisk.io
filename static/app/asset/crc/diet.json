@@ -43,32 +43,53 @@
       "type": "select",
       "titleMap": [
         {
-          "value": "1/2 cup or less",
+          "value": 0,
           "name": "1/2 cup or less"
         },
         {
-          "value": "Between 1/2 cup and 1 1/2 cups",
+          "value": 1,
           "name": "Between 1/2 cup and 1 1/2 cups"
         },
         {
-          "value": "Between 1 1/2 cups and 3 cups",
+          "value": 2,
           "name": "Between 1 1/2 cups and 3 cups"
         },
         {
-          "value": "Between 3 cups and 5 cups",
+          "value": 3,
           "name": "Between 3 cups and 5 cups"
         },
         {
-          "value": "More than 5 cups",
+          "value": 4,
           "name": "More than 5 cups"
         }
       ],
       "condition" : "response.vegetables_serving != 0"
     },
-    {
-      "type": "submit",
-      "style": "btn-info",
-      "title": "Next"
+     {
+      "type": "section",
+      "htmlClass": "row",
+      "items": [
+        {
+          "type": "button",
+          "style": "test_previous_bnt",
+          "onClick" : "goback()",
+          "htmlClass": "col-xs-4",
+          "title": "Previous"
+        },
+        {
+          "type": "button",
+          "style": "test_startover_bnt",
+          "onClick" : "startover()",
+          "htmlClass": "col-xs-4",
+          "title": "Start Over"
+        },
+        {
+          "type": "submit",
+          "style": "test_next_bnt",
+          "htmlClass": "col-xs-4",
+          "title": "Next"
+        }
+      ]
     }
   ],
   "schema": {
@@ -90,13 +111,13 @@
       },
       "vegetables_serving_size": {
         "title": "2. In the past 30 days, how much did you usually eat in each serving of vegetables or leafy green salads?",
-        "type": "string",
+        "type": "number",
         "enum": [
-          "1/2 cup or less",
-          "Between 1/2 cup and 1 1/2 cups",
-          "Between 1 1/2 cup and 3 cups",
-          "Between 3 cup and 5 cups",
-          "More than 5 cups"
+          0,
+          1,
+          2,
+          3,
+          4
         ]
       }
     },

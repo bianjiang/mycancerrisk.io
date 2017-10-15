@@ -427,9 +427,30 @@
       "condition": "response.somke == -1 && response.start_time > 0 "
     },
     {
-      "type": "submit",
-      "style": "btn-info",
-      "title": "Next"
+      "type": "section",
+      "htmlClass": "row",
+      "items": [
+        {
+          "type": "button",
+          "style": "test_previous_bnt",
+          "onClick" : "goback()",
+          "htmlClass": "col-xs-4",
+          "title": "Previous"
+        },
+        {
+          "type": "button",
+          "style": "test_startover_bnt",
+          "onClick" : "startover()",
+          "htmlClass": "col-xs-4",
+          "title": "Start Over"
+        },
+        {
+          "type": "submit",
+          "style": "test_next_bnt",
+          "htmlClass": "col-xs-4",
+          "title": "Next"
+        }
+      ]
     }
   ],
   "schema": {
