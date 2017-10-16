@@ -9,6 +9,7 @@ from time import gmtime, strftime, strptime
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 import boto3
+from botocore.config import Config
 from dbmongo import db
 
 userinfo = Blueprint('userinfo',__name__)
@@ -115,7 +116,8 @@ def checkemail():
             "ses",
             aws_access_key_id=secret.aws_access_key_id,
             aws_secret_access_key=secret.aws_secret_access_key,
-            region_name="us-west-2"
+            region_name="us-west-2",
+            config=Config({"https" : "https://proxe.shands.ufl.edu:3128"})
         )
         verified_email = client.list_verified_email_addresses()
         # current_app.logger.info(verified_email['VerifiedEmailAddresses'])

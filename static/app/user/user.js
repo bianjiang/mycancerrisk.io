@@ -57,7 +57,7 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                                         },
                                         {
                                             "type": "submit",
-                                            "style": "btn-info",
+                                            "style": "submit_userinfo_bnt",
                                             "title": "Submit"
                                         }
                                     ];

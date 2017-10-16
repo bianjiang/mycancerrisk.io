@@ -17,7 +17,7 @@ body {
 }
 .consent_form_title {
   text-align: center;
-  font-size: 1.4375em;
+  font-size: 2rem;
 }
 .consent_form_body h5,ul{
   margin-left: 1%;
@@ -32,7 +32,7 @@ body {
   margin-top: 5%;
   overflow: scroll;
   height: 500px;
-  font-size: 1.4375em;
+  font-size: 2rem;
   text-align: justify;
 
 }
@@ -53,15 +53,15 @@ body {
   float: right;
   margin-top: 25px;
   margin-bottom: 10px;
-  font-size: 1.25em;
+  font-size: 2rem;
 }
 .consentform_bnt,.btn-info{
     text-align: center;
-    font-size: 1.625em;
+    font-size: 2rem;
 }
 .agree_bnt {
     text-align: center;
-    font-size: 1.625em;
+    font-size: 2rem;
     margin-left: 36%;
 }
 .img {
@@ -149,4 +149,11 @@ p.read_more_p {
   color: #fff;
   font-size: 2rem;
   margin-left: 25%;
+}
+.submit_userinfo_bnt{
+  float: left;
+  background-color: #657e65;
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 40%;
 }
