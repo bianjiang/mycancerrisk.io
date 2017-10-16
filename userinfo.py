@@ -112,6 +112,7 @@ def checkemail():
     # Create an SNS client
     try:
         verify_email = request.json['info']
+        current_app.logger.info(verify_email)
         client = boto3.client(
             "ses",
             aws_access_key_id=secret.aws_access_key_id,
