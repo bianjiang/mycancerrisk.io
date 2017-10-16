@@ -58,7 +58,7 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                                         {
                                             "type": "submit",
                                             "style": "submit_userinfo_bnt",
-                                            "title": "Submit"
+                                            "title": "Save and Exit"
                                         }
                                     ];
         $scope.schema_user = {

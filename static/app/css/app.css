@@ -123,10 +123,12 @@ p.read_more_p {
 
 .risk_result_left {
   width: 38%;
+  margin-top: 1rem;
 }
 
 .risk_result_right {
   width: 62%;
+  margin-top: 1rem;
 }
 
 
