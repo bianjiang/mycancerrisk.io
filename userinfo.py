@@ -117,10 +117,10 @@ def checkemail():
             aws_access_key_id=secret.aws_access_key_id,
             aws_secret_access_key=secret.aws_secret_access_key,
             region_name="us-west-2",
-            config=Config({"https" : "https://proxe.shands.ufl.edu:3128"})
+            config=Config(proxies={"https" : "https://proxe.shands.ufl.edu:3128"})
         )
         verified_email = client.list_verified_email_addresses()
-        # current_app.logger.info(verified_email['VerifiedEmailAddresses'])
+        current_app.logger.info(verified_email['VerifiedEmailAddresses'])
         if request.json['info'] in verified_email['VerifiedEmailAddresses']:
             return jsonify(status='OK',message='verified')
         else:
