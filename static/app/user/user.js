@@ -14,7 +14,7 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                 templateUrl: '../static/app/user/consentform.html',
                 controller: 'consentformCtrl',
                 scope: modalScope,
-                size: 'lg',
+                size: 'xl',
                 backdrop  : 'static',
                 keyboard  : false
             });

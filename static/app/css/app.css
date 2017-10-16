@@ -18,23 +18,26 @@ body {
 .consent_form_title {
   text-align: center;
   font-size: 2rem;
+  margin-left: 10%;
 }
-.consent_form_body h5,ul{
+.consent_form_body {
   margin-left: 1%;
   margin-right: 1%;
   padding-left:1%;
 /*  font-size: 1.42em;*/
 }
-
 .consent_form {
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 5%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   overflow: scroll;
   height: 500px;
   font-size: 2rem;
   text-align: justify;
-
+}
+.modal-xl {
+    width: 1200px;
 }
 #content .jumbotron p{
     font-size: 2rem;
@@ -54,6 +57,7 @@ body {
   margin-top: 25px;
   margin-bottom: 10px;
   font-size: 2rem;
+  margin-right: 2%;
 }
 .consentform_bnt,.btn-info{
     text-align: center;
@@ -62,7 +66,7 @@ body {
 .agree_bnt {
     text-align: center;
     font-size: 2rem;
-    margin-left: 36%;
+    margin-left: 45%;
 }
 .img {
     background: url("../img/colon-cancer.jpg");

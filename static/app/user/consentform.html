@@ -1,13 +1,17 @@
 <!-- Navbar -->
+<button class="btn btn-warning close_bnt hidden" type="button" ng-click="close()">Close</button>
+<div class="consent_form_title panel-heading">
+    <h2>Consent Form</h2>
+</div>
 <div class="consent_form">
     <div ng-controller="consentformCtrl" class="panel panel-info">
-        <button class="btn btn-warning close_bnt hidden" type="button" ng-click="close()">Close</button>
+        <!-- <button class="btn btn-warning close_bnt hidden" type="button" ng-click="close()">Close</button>
         <div class="consent_form_title panel-heading">
             <h2>Consent Form</h2>
-        </div>
+        </div> -->
         <div class="consent_form_body body">
-            <h5><strong>Title of Project:</strong>   Developing a Facebook app to promote colorectal cancer screening: pilot testing a social media intervention</h5>
-            <h5><strong>Principal Investigator:</strong>   Yi Guo, Assistant Professor University of Florida</h5>
+            <p><strong>Title of Project:</strong>   Developing a Facebook app to promote colorectal cancer screening: pilot testing a social media intervention</p>
+            <p><strong>Principal Investigator:</strong>   Yi Guo, Assistant Professor University of Florida</p>
             <ul>
               <li><strong>Purpose of the Study: </strong>The purpose of this study is to test a Facebook-based social media app and evaluate its effect on Colorectal Cancer knowledge, screening intentions, and screening rate. We may also ask other questions about you and your health care.</li>
               <li><strong>Procedures to be followed: </strong>The study includes 3 parts: a pre-study interview, using the app, and a post-study interview.</li>
@@ -20,7 +24,7 @@
               <li><strong>Privacy Authorization: </strong>UF and Shands will be allowed to collect, use and/or give out your medical information, but only to: <ul><li>Other researchers whose research is approved by an Institutional Review Board (IRB).</li> <li>The sponsor of a study (like a drug company), the Food and Drug Administration, the Department of Health and Human Services, the Office of Human Research Protections or other Government agencies.</li></ul></li>
               <li><strong>Voluntary Participation: </strong>Your decision to be in this research is voluntary. You can stop at any time. You do not have to answer any questions you do not want to answer.  If you choose not to take part, this will have no effect on your current or future health care at Shands Hospital at the University of Florida.  If you have any questions about your rights as a research subject, you can phone the Institutional Review Board at 352-273-9600. If you have any questions regarding the study you can contact the PI, Yi Guo at 352-294-5969.</li>
             </ul>
-            <h5>Use of the app implies that you have read the information in this form and consent to take part in the research. Please keep this form for your records or future reference.</h5>
+            <p>Use of the app implies that you have read the information in this form and consent to take part in the research. Please keep this form for your records or future reference.</p>
         </div>
         <div class="consent_form_footer">
             <button class="btn btn-warning agree_bnt" type="button" ng-click="confirm_consent()">I Understand</button>
