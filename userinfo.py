@@ -120,8 +120,8 @@ def checkemail():
             region_name="us-west-2",
             config=Config(proxy={"https" : "https://proxe.shands.ufl.edu:3128"})
         )
-        verified_email = client.list_verified_email_addresses()
         current_app.logger.info("list emails")
+        verified_email = client.list_verified_email_addresses()
         if request.json['info'] in verified_email['VerifiedEmailAddresses']:
             return jsonify(status='OK',message='verified')
         else:
