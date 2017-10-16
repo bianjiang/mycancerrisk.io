@@ -122,6 +122,7 @@ def checkemail():
         )
         current_app.logger.info("list emails")
         verified_email = client.list_verified_email_addresses()
+        current_app.logger.info(verified_email)
         if request.json['info'] in verified_email['VerifiedEmailAddresses']:
             return jsonify(status='OK',message='verified')
         else:
