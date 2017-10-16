@@ -105,60 +105,60 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                 } else {
                     $scope.response_user = response;
                 }
-                if($scope.response_user['email'] != undefined) {
-                    $http({
-                      method: 'POST',
-                      url: '/checkemail',
-                      data: {
-                          info: $scope.response_user['email']
-                      }
-                      }).then(function(response) {
-                          $scope.warning = response.data.message;
-                          console.log($scope.warning);
-                          $scope.schema_user = {
-                                        "type": "object",
-                                        "properties": {
-                                            "fname": {
-                                                "type": "string",
-                                                "minLength": 2,
-                                                "title": "First Name"
-                                            },
-                                            "lname": {
-                                                "type": "string",
-                                                "minLength": 2,
-                                                "title": "Last Name"
-                                            },
-                                            "age": {
-                                                "title": "Age",
-                                                "type": "number"
-                                            },
-                                            "email": {
-                                                "title": "Email",
-                                                "type": "string",
-                                                "pattern": "^\\S+@\\S+$",
-                                                "description": $scope.warning
-                                            },
-                                            "phone": {
-                                                "title": "Phone Number",
-                                                "type": "string",
-                                                "pattern": "^[0-9]*$"
-                                            }
-                                        },
-                                         "required": [
-                                            "fname",
-                                            "lname",
-                                            "age",
-                                            "email"
-                                          ]
-                                    };
-                          // $scope.schema_user['properties']['email']['description'] = $scope.warning;
-                          $(function(){
-                              $("#precheck").removeClass('hidden');
-                            });
-                      }, function(error) {
-                          console.log(error);
-                      });
-                }
+                // if($scope.response_user['email'] != undefined) {
+                //     $http({
+                //       method: 'POST',
+                //       url: '/checkemail',
+                //       data: {
+                //           info: $scope.response_user['email']
+                //       }
+                //       }).then(function(response) {
+                //           $scope.warning = response.data.message;
+                //           console.log($scope.warning);
+                //           $scope.schema_user = {
+                //                         "type": "object",
+                //                         "properties": {
+                //                             "fname": {
+                //                                 "type": "string",
+                //                                 "minLength": 2,
+                //                                 "title": "First Name"
+                //                             },
+                //                             "lname": {
+                //                                 "type": "string",
+                //                                 "minLength": 2,
+                //                                 "title": "Last Name"
+                //                             },
+                //                             "age": {
+                //                                 "title": "Age",
+                //                                 "type": "number"
+                //                             },
+                //                             "email": {
+                //                                 "title": "Email",
+                //                                 "type": "string",
+                //                                 "pattern": "^\\S+@\\S+$",
+                //                                 "description": $scope.warning
+                //                             },
+                //                             "phone": {
+                //                                 "title": "Phone Number",
+                //                                 "type": "string",
+                //                                 "pattern": "^[0-9]*$"
+                //                             }
+                //                         },
+                //                          "required": [
+                //                             "fname",
+                //                             "lname",
+                //                             "age",
+                //                             "email"
+                //                           ]
+                //                     };
+                //           // $scope.schema_user['properties']['email']['description'] = $scope.warning;
+                //           $(function(){
+                //               $("#precheck").removeClass('hidden');
+                //             });
+                //       }, function(error) {
+                //           console.log(error);
+                //       });
+                // }
             }).error(function(error) {
                 console.log(error);
             });
@@ -180,24 +180,25 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                   }, function(error) {
                       console.log(error);
                   });
-                $http({
-                    method: 'POST',
-                    url: '/checkemail',
-                    data: {
-                        info: $scope.response_user['email']
-                    }
-                    }).then(function(response) {
-                        $scope.warning = response.data.message;
-                        $scope.schema_user['properties']['email']['description'] = $scope.warning;
-                        console.log($scope.schema_user)
-                        // $(function(){
-                        //     $("#my-div").removeClass('hidden');
-                        // });
-                        // $route.reload();
-                        $location.path('#welcome')
-                    }, function(error) {
-                        console.log(error);
-                    });
+                $location.path('#welcome')
+                // $http({
+                //     method: 'POST',
+                //     url: '/checkemail',
+                //     data: {
+                //         info: $scope.response_user['email']
+                //     }
+                //     }).then(function(response) {
+                //         $scope.warning = response.data.message;
+                //         $scope.schema_user['properties']['email']['description'] = $scope.warning;
+                //         console.log($scope.schema_user)
+                //         // $(function(){
+                //         //     $("#my-div").removeClass('hidden');
+                //         // });
+                //         // $route.reload();
+                //         $location.path('#welcome')
+                //     }, function(error) {
+                //         console.log(error);
+                //     });
             }
         }
 

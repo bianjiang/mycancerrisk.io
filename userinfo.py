@@ -117,8 +117,7 @@ def checkemail():
             "ses",
             aws_access_key_id=secret.aws_access_key_id,
             aws_secret_access_key=secret.aws_secret_access_key,
-            region_name="us-west-2",
-            config=Config(proxies={"https" : "https://proxe.shands.ufl.edu:3128"})
+            region_name="us-west-2"
         )
         current_app.logger.info("list emails")
         verified_email = client.list_verified_email_addresses()
