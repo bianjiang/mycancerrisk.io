@@ -75,10 +75,7 @@ angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'
                 console.log(responseForm.gender.value);
                 sections[4] = 'male_miscellaneous';
               }
-              console.log($scope.sectionId)
-              console.log($scope.response)
               final_response[$scope.sectionId] = $scope.response;
-              console.log(final_response)
 
               var next_sectionId = sections.shift();
               if (next_sectionId) {

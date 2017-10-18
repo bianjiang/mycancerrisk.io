@@ -67,6 +67,7 @@ body {
     text-align: center;
     font-size: 2rem;
     margin-left: 45%;
+    margin-bottom: 1rem
 }
 .img {
     background: url("../img/colon-cancer.jpg");
@@ -151,7 +152,7 @@ p.read_more_p {
 }
 .test_startover_bnt{
   float: left;
-  background-color: #657e65;
+  background-color: #ab3030;;
   color: #fff;
   font-size: 2rem;
   margin-left: 25%;
