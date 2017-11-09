@@ -63,7 +63,7 @@
             </ul>
           {% else %}
             <ul class="nav navbar-nav ">
-            <li id="about" class="active"><a href="#!/welcome">Welcome</a></li>
+            <li id="about" class="active"><a href="#/welcome">Welcome</a></li>
             <!-- <li id="risk" ><a href="#risk">CRC Risk Assessment</a></li> -->
             <li id="testresults" ><a href="#!/test-results">Test Results</a></li>
             </ul>
@@ -76,7 +76,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="/logout">Logout</a></li>
-                <li><a href="#!/user">Update Information</a></li>
+                <li><a href="#/user">Update Information</a></li>
               </ul>
               </li>
             </ul>
