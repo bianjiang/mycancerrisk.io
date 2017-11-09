@@ -19,6 +19,12 @@ CRCRiskApp.register_blueprint(userinfo);
 def homepage():
     return render_template('index.aspx')
 
+@app.after_request
+def add_header(response):
+    response.cache_control.public = True
+    response.cache_control.max_age = 300
+    return response
+
 sched = BackgroundScheduler()
 sched.add_job(notification.notify, 'interval', seconds = 604800)
 sched.start()
