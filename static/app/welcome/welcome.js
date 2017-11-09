@@ -10,7 +10,7 @@ angular.module('CRCRiskApp.welcome', ['ngRoute', 'ui.bootstrap'])
             if (response.data.message != undefined) {
                     if (response.data.message['logged_in'] == true) {
                         $scope.button = 'Take Test';
-                        $(".welcome-bnt").attr("href", "#/risk");
+                        $(".welcome-bnt").attr("href", "#!/risk");
                         if (response.data.message['status'] == 'newuser') {
                             if (response.data.message['email'] != 'none') {
                                 $rootScope.fbemail = response.data.message['email'];
