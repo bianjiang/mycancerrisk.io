@@ -26,9 +26,9 @@
 
   <link rel="stylesheet" href="/static/app/bower_components/angular-loading-bar/build/loading-bar.min.css">
 
-
+<!-- 
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine|Open+Sans|Work+Sans">
-
+ -->
 
   <link rel="stylesheet" href="/static/app/css/app.css">
   <link rel="stylesheet" href="/static/app/css/typesettings-1.1-min.css">

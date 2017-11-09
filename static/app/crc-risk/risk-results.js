@@ -34,6 +34,13 @@ angular.module('CRCRiskApp.risk-results', ['ngRoute','schemaForm','smart-table',
             if (response.data.message != undefined) {
                     if (response.data.message['logged_in'] != true) {
                         $location.path('/welcome');
+                    } else {
+                        if (response.data.message['status'] == 'newuser') {
+                            if (response.data.message['email'] != 'none') {
+                                $rootScope.fbemail = response.data.message['email'];
+                            }
+                            $location.path('/user');
+                        }
                     }
                 } else {
                        $location.path('/welcome');
