@@ -6,9 +6,9 @@
         <div ng-view></div>
     </div>
 
-<script src="/static/app/bower_components/angular/angular.js"></script>
-<script src="/static/app/bower_components/angular-route/angular-route.js"></script>
-<script src="/static/app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="/static/app/bower_components/angular/angular.min.js"></script>
+<script src="/static/app/bower_components/angular-route/angular-route.min.js"></script>
+<script src="/static/app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="/static/app/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="/static/app/bower_components/tv4/tv4.js"></script>
 <script src="/static/app/bower_components/objectpath/lib/ObjectPath.js"></script>

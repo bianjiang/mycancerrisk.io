@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/static/app/css/typesettings-1.1-min.css">
 
   <script src="/static/app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-  <script src="/static/app/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/static/app/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script type="text/javascript" src='/static/app/config.js'></script><!-- 
   <script type="text/javascript" src='/static/app/js/fixed_navbar.js'></script> -->
@@ -63,7 +63,7 @@
             </ul>
           {% else %}
             <ul class="nav navbar-nav ">
-            <li id="about" class="active"><a href="#welcome">Welcomme</a></li>
+            <li id="about" class="active"><a href="#welcome">Welcome</a></li>
             <!-- <li id="risk" ><a href="#risk">CRC Risk Assessment</a></li> -->
             <li id="testresults" ><a href="#test-results">Test Results</a></li>
             </ul>
