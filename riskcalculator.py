@@ -307,11 +307,11 @@ def updateForm():
 
         Avgrisk = [float(crc_avgrisk[gender][str(T1)][race[Race-1]][0]),float(crc_avgrisk[gender][str(T1)][race[Race-1]][1]),float(crc_avgrisk[gender][str(T1)][race[Race-1]][2])]
         usr_test['test_result'] = {'absRsk': AbsRisk, 'avgrisk': Avgrisk}
-        current_app.logger.info(usr_test)
+        # current_app.logger.info(usr_test)
 
         # insert test_result
         if db.testUser.find_one({'id' : session['id']}) != None:
-            current_app.logger.info('find')
+            # current_app.logger.info('find')
             db.testUser.update({'id': session['id']},{'$set':{'test_info.' + current_time : usr_test}})
         else:
             return jsonify(status='ERROR',message='update test result failed')

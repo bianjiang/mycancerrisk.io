@@ -44,7 +44,7 @@ def updateuser():
             data = db.testUser.find_one({'id': session['id']})
             # current_app.logger.info(data)
         else:
-            current_app.logger.info("insert it")
+            # current_app.logger.info("insert it")
             db.testUser.insert_one(
                 {
                     'id': userId,
@@ -80,7 +80,7 @@ def sendresult():
     result = {}
     try:
         date = request.json['info']
-        current_app.logger.info(date)
+        # current_app.logger.info(date)
         if db.testUser.find_one({'id' : session['id']}) != None:
             data = db.testUser.find_one({'id': session['id']})
             result['test_result'] = data['test_info'][date]['test_result']
@@ -100,7 +100,7 @@ def checkuser():
             #return jsonify(status='OK',message=JSONEncoder().encode(data))
             return jsonify(message={'status' : 'olduser', 'logged_in': session['logged_in']})
         else:
-            current_app.logger.info(session['email'])
+            # current_app.logger.info(session['email'])
             return jsonify(message={'status' : 'newuser', 'email' : session['email'], 'logged_in': session['logged_in']})
         # db.testUser.drop()
     except Exception as e:
@@ -112,16 +112,16 @@ def checkemail():
     # Create an SNS client
     try:
         verify_email = request.json['info']
-        current_app.logger.info(verify_email)
+        # current_app.logger.info(verify_email)
         client = boto3.client(
             "ses",
             aws_access_key_id=secret.aws_access_key_id,
             aws_secret_access_key=secret.aws_secret_access_key,
             region_name="us-west-2"
         )
-        current_app.logger.info("list emails")
+        # current_app.logger.info("list emails")
         verified_email = client.list_verified_email_addresses()
-        current_app.logger.info(verified_email)
+        # current_app.logger.info(verified_email)
         if request.json['info'] in verified_email['VerifiedEmailAddresses']:
             return jsonify(status='OK',message='verified')
         else:
@@ -138,7 +138,7 @@ def confirm_consent():
     try:
         if request.json['info'] == True:
             session['confirm_consent'] = True
-            current_app.logger.info(session['confirm_consent'])
+            # current_app.logger.info(session['confirm_consent'])
         return jsonify(status='OK',message='confirmed')
 
     except Exception as e:
