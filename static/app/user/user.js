@@ -22,22 +22,20 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
             modalInstance.result.then(function (result) {
             }, null);
         }
-        $http.get("/checkuser")
-            .success(function (response) {
-              if (response.message != undefined) {
-                console.log(response.message)
-                if (response.message['status'] == 'newuser') {
-                    $rootScope.newuser = true;
-                    $timeout(function() {
-                        angular.element(document.querySelector('.consentform_bnt')).click();
-                    }, 0);
+        $http({
+            method: 'get',
+            url: '/checkuser'
+        }).then(function (response) {
+            if (response.data.message != undefined) {
+                    if (response.data.message['logged_in'] != true) {
+                        $location.path('/welcome');
+                    }
                 } else {
-                   $rootScope.newuser = false;
+                       $location.path('/welcome');
                 }
-              }
-            }).error(function(error) {
-              console.log("not login");
-            });
+        },function (error){
+            console.log(error, '"not login"');
+        });
         $scope.form_user = [
                                         {
                                             "key": "fname",
@@ -97,72 +95,19 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                                             "email"
                                           ]
                                     };
-        $http.get("/getuserinfo")
-            .success(function (response) {
-                if(response.status == 'ERROR') {
-                    response.message = {'email' : $rootScope.fbemail}
-                    $scope.response_user = response.message;
+        $http({
+            method: 'get', 
+            url: '/getuserinfo'
+        }).then(function (response) {
+            if(response.status == 'ERROR') {
+                    response.data.message = {'email' : $rootScope.fbemail}
+                    $scope.response_user = response.data.message;
                 } else {
-                    $scope.response_user = response;
+                    $scope.response_user = response.data;
                 }
-                // if($scope.response_user['email'] != undefined) {
-                //     $http({
-                //       method: 'POST',
-                //       url: '/checkemail',
-                //       data: {
-                //           info: $scope.response_user['email']
-                //       }
-                //       }).then(function(response) {
-                //           $scope.warning = response.data.message;
-                //           console.log($scope.warning);
-                //           $scope.schema_user = {
-                //                         "type": "object",
-                //                         "properties": {
-                //                             "fname": {
-                //                                 "type": "string",
-                //                                 "minLength": 2,
-                //                                 "title": "First Name"
-                //                             },
-                //                             "lname": {
-                //                                 "type": "string",
-                //                                 "minLength": 2,
-                //                                 "title": "Last Name"
-                //                             },
-                //                             "age": {
-                //                                 "title": "Age",
-                //                                 "type": "number"
-                //                             },
-                //                             "email": {
-                //                                 "title": "Email",
-                //                                 "type": "string",
-                //                                 "pattern": "^\\S+@\\S+$",
-                //                                 "description": $scope.warning
-                //                             },
-                //                             "phone": {
-                //                                 "title": "Phone Number",
-                //                                 "type": "string",
-                //                                 "pattern": "^[0-9]*$"
-                //                             }
-                //                         },
-                //                          "required": [
-                //                             "fname",
-                //                             "lname",
-                //                             "age",
-                //                             "email"
-                //                           ]
-                //                     };
-                //           // $scope.schema_user['properties']['email']['description'] = $scope.warning;
-                //           $(function(){
-                //               $("#precheck").removeClass('hidden');
-                //             });
-                //       }, function(error) {
-                //           console.log(error);
-                //       });
-                // }
-            }).error(function(error) {
-                console.log(error);
-            });
-
+        },function (error){
+            console.log(error);
+        });
         $scope.submit = function(form) {
             // First we broadcast an event so all fields validate themselves
             $scope.$broadcast('schemaFormValidate');
@@ -181,24 +126,7 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                       console.log(error);
                   });
                 $location.path('#welcome')
-                // $http({
-                //     method: 'POST',
-                //     url: '/checkemail',
-                //     data: {
-                //         info: $scope.response_user['email']
-                //     }
-                //     }).then(function(response) {
-                //         $scope.warning = response.data.message;
-                //         $scope.schema_user['properties']['email']['description'] = $scope.warning;
-                //         console.log($scope.schema_user)
-                //         // $(function(){
-                //         //     $("#my-div").removeClass('hidden');
-                //         // });
-                //         // $route.reload();
-                //         $location.path('#welcome')
-                //     }, function(error) {
-                //         console.log(error);
-                //     });
+
             }
         }
 
@@ -206,7 +134,7 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
 }])
     .controller('consentformCtrl', ['$scope','$rootScope','$http', function ($scope,$rootScope,$http) {
         $scope.close = function () {
-              $scope.modalInstance.dismiss('cancel');
+              $scope.modalInstance.close(false);
         };
         $scope.confirm_consent = function () {
               $http({
@@ -216,7 +144,7 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                         info: true
                     }
                     }).then(function(response) {
-                      $scope.modalInstance.dismiss('cancel');
+                      $scope.modalInstance.close(false);
                        console.log(response.data.message);
                     }, function(error) {
                         console.log(error);

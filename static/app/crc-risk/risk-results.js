@@ -27,21 +27,20 @@ angular.module('CRCRiskApp.risk-results', ['ngRoute','schemaForm','smart-table',
             modalInstance.result.then(function (result) {
             }, null);
         }
-        $http.get("/checkuser")
-          .success(function (response) {
-            console.log(response.message)
-            if (response.message != undefined) {
-              console.log(response.message)
-              if (response.message['status'] == 'newuser') {
-                if  (response.message['email'] != 'none') {
-                  $rootScope.fbemail = response.message['email'];
+        $http({
+            method: 'get',
+            url: '/checkuser'
+        }).then(function (response) {
+            if (response.data.message != undefined) {
+                    if (response.data.message['logged_in'] != true) {
+                        $location.path('/welcome');
+                    }
+                } else {
+                       $location.path('/welcome');
                 }
-                $location.path('/user')
-              }
-            }
-          }).error(function(error) {
-            console.log("not login");
-          });
+        },function (error){
+            console.log(error, '"not login"');
+        });
         $scope.rowCollection = {};
         // $scope.factors1 = 'Close relatives (parents, brothers, sisters, or children) who have had colorectal cancer. If you have close relatives who have had colorectal cancer, your risk of colorectcal cancer is slightly higher. This is more true if the relative had the cancer at a young age. If you have many close relatives who have had colorectal cancer, the risk can be even higher.';
         // console.log($rootScope.result_time);
@@ -54,7 +53,7 @@ angular.module('CRCRiskApp.risk-results', ['ngRoute','schemaForm','smart-table',
                 }).then(function(response) {
                     var temp = [];
                     var race = ['White','Black','Hispanic','Asian'];
-                    console.log(response.data);
+
                     temp.push({ absRsk5: Math.round(response.data['test_result']['absRsk'][0]*10000)/100,
                                 absRsk10: Math.round(response.data['test_result']["absRsk"][1]*10000)/100,
                                 absRsklife: Math.round(response.data['test_result']["absRsk"][2]*10000)/100,
@@ -93,14 +92,15 @@ angular.module('CRCRiskApp.risk-results', ['ngRoute','schemaForm','smart-table',
     }])
     .controller('moreinfoCtrl', ['$scope','$rootScope','$http', function ($scope,$rootScope,$http) {
         $scope.close = function () {
-              $scope.modalInstance.dismiss('cancel');
+              $scope.modalInstance.close(false);
         };
-        console.log($scope.params)
         $scope.title = $scope.params.title;
-        $http.get('/static/app/asset/crc/factors.json').success(function(data) {
-            $scope.content = data[$scope.title]
-            // console.log(data[$scope.title])
-          }).error(function() {
-            $scope.error = 'Failed to load...';
-          });
+        $http({
+            method: 'get',
+            url: '/static/app/asset/crc/factors.json'
+        }).then(function (response) {
+            $scope.content = response.data[$scope.title]
+        },function (error){
+            console.log(error);
+        });
 }]);

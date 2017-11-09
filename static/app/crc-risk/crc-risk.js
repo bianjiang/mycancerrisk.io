@@ -14,28 +14,31 @@ angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'
             return typeof $scope.response === 'string' ? $scope.response : JSON.stringify($scope.response, undefined, 2);
         };
         // check user existence
-        $http.get("/checkuser")
-            .success(function (response) {
-              if (response.message != undefined) {
-                console.log(response.message);
-                if (response.message['status'] == 'newuser') {
-                  if  (response.message['email'] != 'none') {
-                    $rootScope.fbemail = response.message['email'];
-                  }
-                  $location.path('/user');
+        $http({
+            method: 'get',
+            url: '/checkuser'
+        }).then(function (response) {
+            if (response.data.message != undefined) {
+                    if (response.data.message['logged_in'] != true) {
+                        $location.path('/welcome');
+                    }
+                } else {
+                       $location.path('/welcome');
                 }
-              }
-            }).error(function(error) {
-              console.log("not login");
-            });
+        },function (error){
+            console.log(error, '"not login"');
+        });
         $scope.age = 0
-        $http.get("/getuserinfo")
-            .success(function (response) {
-                $scope.age = response['age'];
-                $scope.response = {'age': $scope.age};
-            }).error(function(error) {
-              console.log(error);
-            });
+        $http({
+            method: 'get',
+            url: '/getuserinfo'
+        }).then(function (response) {
+            $scope.age = response.data['age'];
+            $scope.response = {'age': $scope.age};
+        },function (error){
+            console.log(error);
+        });
+
         var final_response = {};
 
         var sections = ['demographics', 'diet', 'medical_history', 'medications', 'physical_activity', 'miscellaneous', 'family'];
@@ -43,23 +46,25 @@ angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'
         var previous_section = []
         var next_section = function (sectionId) {
           previous_section.push(sectionId)
-          $http.get('/static/app/asset/crc/' + sectionId + '.json').success(function(data) {
-            $scope.error = null;
-            $scope.loading = false;
-            $scope.schema = data.schema;
-            $scope.form = data.form;
-            if(final_response[sectionId] != undefined) {
-              $scope.response = final_response[sectionId]
-            } else {
-              $scope.response = {}
-            }
-            console.log($scope.response)
-            $scope.sectionId = sectionId;
-            if(sectionId == 'demographics') {
-              $scope.response = {'age': $scope.age};
-            };
-          }).error(function() {
-            $scope.error = 'Failed to load...';
+          $http({
+              method: 'get',
+              url: '/static/app/asset/crc/' + sectionId + '.json'
+          }).then(function (response) {
+              $scope.error = null;
+              $scope.loading = false;
+              $scope.schema = response.data.schema;
+              $scope.form = response.data.form;
+              if(final_response[sectionId] != undefined) {
+                $scope.response = final_response[sectionId]
+              } else {
+                $scope.response = {}
+              }
+              $scope.sectionId = sectionId;
+              if(sectionId == 'demographics') {
+                $scope.response = {'age': $scope.age};
+              };
+          },function (error){
+              console.log(error);
           });
         };
 
@@ -110,15 +115,18 @@ angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'
         $scope.goback = function() {
               var current_section = previous_section.pop()
               sections.unshift(current_section)
-              $http.get('/static/app/asset/crc/' + previous_section[previous_section.length-1] + '.json').success(function(data) {
-                $scope.error = null;
-                $scope.loading = false;
-                $scope.schema = data.schema;
-                $scope.form = data.form;
-                $scope.sectionId = previous_section[previous_section.length-1];
-                $scope.response = final_response[$scope.sectionId]
-              }).error(function() {
-                $scope.error = 'Failed to load...';
+               $http({
+                  method: 'get',
+                  url: '/static/app/asset/crc/' + previous_section[previous_section.length-1] + '.json'
+              }).then(function (response) {
+                  $scope.error = null;
+                  $scope.loading = false;
+                  $scope.schema = response.data.schema;
+                  $scope.form = response.data.form;
+                  $scope.sectionId = previous_section[previous_section.length-1];
+                  $scope.response = final_response[$scope.sectionId]
+              },function (error){
+                  console.log(error);
               });
         }
         $scope.startover = function() {
