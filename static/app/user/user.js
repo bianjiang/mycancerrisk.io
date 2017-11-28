@@ -30,6 +30,13 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                     if (response.data.message['logged_in'] != true) {
                         $location.path('/welcome');
                     }
+                    else {
+                        if (response.data.message['confirm_consent'] != true) {
+                            $timeout(function() {
+                                angular.element('.consentform_bnt').triggerHandler('click');
+                            }, 0);
+                        }
+                    }
                 } else {
                        $location.path('/welcome');
                 }
@@ -96,7 +103,7 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                                           ]
                                     };
         $http({
-            method: 'get', 
+            method: 'get',
             url: '/getuserinfo'
         }).then(function (response) {
             if(response.status == 'ERROR') {

@@ -37,28 +37,30 @@ def updateuser():
         lname = user_data['lname']
         userId = session['id']
         test_info = {}
-        current_app.logger.info(userId)
+        # current_app.logger.info(userId)
         if db.testUser.find_one({'id' : userId}) != None:
             current_app.logger.info("find it")
             db.testUser.update_one({'id': userId},{'$set':{'fname':fname,'lname':lname,'email':email,'age':age}})
             data = db.testUser.find_one({'id': session['id']})
             # current_app.logger.info(data)
         else:
-            # current_app.logger.info("insert it")
-            db.testUser.insert_one(
-                {
-                    'id': userId,
-                    'fname': fname,
-                    'lname':lname,
-                    'email':email,
-                    'age':age,
-                    'test_info': test_info,
-                    'confirm_consent' : session['confirm_consent']
-                })
-        return jsonify(status='OK',message='successfully update your informaiton')
+            if (session['confirm_consent'] == True):
+                db.testUser.insert_one(
+                    {
+                        'id': userId,
+                        'fname': fname,
+                        'lname':lname,
+                        'email':email,
+                        'age':age,
+                        'test_info': test_info,
+                        'confirm_consent' : session['confirm_consent']
+                    })
+                return jsonify(status='OK',message='successfully update your informaiton')
+            else:
+                return jsonify(status='ERROR',message='not_confirmed')
     except Exception as e:
-        # return jsonify(status='ERROR',message=str(e))
-        return jsonify(status='ERROR',message='fail to update your information')
+        return jsonify(status='ERROR',message=str(e))
+        # return jsonify(status='ERROR',message='fail to update your information')
 
 @userinfo.route('/getuserinfo',methods=['GET'])
 def senduserinfo():
@@ -98,11 +100,12 @@ def checkuser():
     try:
         if db.testUser.find_one({'id' : session['id']}) != None:
             #return jsonify(status='OK',message=JSONEncoder().encode(data))
-            current_app.logger.info(session['logged_in'])
-            return jsonify(message={'status' : 'olduser', 'logged_in': session['logged_in']})
+            # current_app.logger.info(session['logged_in'])
+            return jsonify(message={'status' : 'olduser', 'logged_in': session['logged_in'], 'confirm_consent': session['confirm_consent']})
         else:
-            # current_app.logger.info(session['email'])
-            return jsonify(message={'status' : 'newuser', 'email' : session['email'], 'logged_in': session['logged_in']})
+            # # current_app.logger.info(session['email'])
+            session['confirm_consent'] = False
+            return jsonify(message={'status' : 'newuser', 'email' : session['email'], 'logged_in': session['logged_in'], 'confirm_consent': session['confirm_consent']})
         # db.testUser.drop()
     except Exception as e:
         return str(e)
