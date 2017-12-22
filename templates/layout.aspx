@@ -18,7 +18,7 @@
   <meta property="og:description" content=""/>
   <link rel="stylesheet" href="/static/app/bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="/static/app/bower_components/html5-boilerplate/dist/css/main.css">
-  <link rel="stylesheet" href="/static/app/bower_components/font-awesome/css/font-awesome.css">
+<!--   <link rel="stylesheet" href="/static/app/bower_components/font-awesome/css/font-awesome.css"> -->
 
   <link rel="stylesheet" href="/static/app/bower_components/bootstrap/dist/css/bootstrap.min.css">
   

@@ -1,6 +1,6 @@
 from flask import Flask, session
 import config
-import facebook as fb
+# import facebook as fb
 from dbmongo import db
 import requests
 

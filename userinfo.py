@@ -101,6 +101,7 @@ def checkuser():
         if db.testUser.find_one({'id' : session['id']}) != None:
             #return jsonify(status='OK',message=JSONEncoder().encode(data))
             # current_app.logger.info(session['logged_in'])
+            session['confirm_consent'] = db.testUser.find_one({'id': session['id']})['confirm_consent']
             return jsonify(message={'status' : 'olduser', 'logged_in': session['logged_in'], 'confirm_consent': session['confirm_consent']})
         else:
             # # current_app.logger.info(session['email'])

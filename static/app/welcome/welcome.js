@@ -7,6 +7,7 @@ angular.module('CRCRiskApp.welcome', ['ngRoute', 'ui.bootstrap'])
             method: 'get',
             url: '/checkuser'
         }).then(function (response) {
+            console.log(response.data)
             if (response.data.message != undefined) {
                     if (response.data.message['logged_in'] == true) {
                         $scope.button = 'Take Test';
