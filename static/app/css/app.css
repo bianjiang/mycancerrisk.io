@@ -5,6 +5,8 @@ body {
     font-family: 'Open Sans', 'Work Sans', 'Tangerine', serif;
     font-size: 2rem;
     text-rendering: optimizeLegibility;
+    width:100%;
+    height:100%
 }
 #about,#testresults,#crc-risk,#test-results,#userinfo,#crc-risk-results{
   font-size: 2rem;
@@ -163,4 +165,8 @@ p.read_more_p {
   color: #fff;
   font-size: 2rem;
   margin-left: 40%;
+}
+
+.modal-xl{
+  width: -webkit-fill-available;
 }
