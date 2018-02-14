@@ -5,10 +5,18 @@ from userinfo import userinfo
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 import notification
+from flask_compress import Compress
 # import scheduald_email
 
+compress = Compress()
+def start_app():
+	app = Flask(__name__)
+	compress.init_app(app)
+	return app
 
-CRCRiskApp = Flask(__name__)
+CRCRiskApp = start_app()
+
+# CRCRiskApp = Flask(__name__)
 CRCRiskApp.config.from_object('config')
 CRCRiskApp.register_blueprint(fb_auth);
 CRCRiskApp.register_blueprint(riskcalculator);
