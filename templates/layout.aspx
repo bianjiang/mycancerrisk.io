@@ -33,10 +33,10 @@
   <link rel="stylesheet" href="/static/app/css/app.css">
   <link rel="stylesheet" href="/static/app/css/typesettings-1.1-min.css">
 
-  <script src="/static/app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js" async></script>
-  <script src="/static/app/bower_components/jquery/dist/jquery.min.js" async></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" async></script>
-  <script type="text/javascript" src='/static/app/config.js' async></script><!-- 
+  <script src="/static/app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="/static/app/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src='/static/app/config.js'></script><!-- 
   <script type="text/javascript" src='/static/app/js/fixed_navbar.js'></script> -->
 
 </head>
