@@ -98,7 +98,9 @@ def sendresult():
 @userinfo.route('/checkuser',methods=['GET'])
 def checkuser():
     try:
-        if db.testUser.find_one({'id' : session['id']}) != None:
+        current_app.logger.info(session.get('logged_in'))
+        if session.get('logged_in') == True:
+        # if db.testUser.find_one({'id' : session['id']}) != None:
             #return jsonify(status='OK',message=JSONEncoder().encode(data))
             # current_app.logger.info(session['logged_in'])
             session['confirm_consent'] = db.testUser.find_one({'id': session['id']})['confirm_consent']
