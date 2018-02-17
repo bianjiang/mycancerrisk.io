@@ -3,6 +3,8 @@ import config
 from flask_oauthlib.client import OAuth, OAuthException
 from flask import current_app
 import json
+from dbmongo import db
+
 # from facepy import GraphAPI
 # from apscheduler.schedulers.background import BackgroundScheduler
 # import atexit
@@ -37,8 +39,8 @@ def login():
     callback = url_for(
         'fb_auth.facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
-        _external=True,
-        _scheme= 'https'
+        _external=True
+        # _scheme= 'https'
         )
     return facebook.authorize(callback=callback)
 
@@ -64,6 +66,7 @@ def facebook_authorized():
     profile = json.loads(profile.decode("utf-8"))
     session['user_name'] = profile['name']
     session['id'] = profile['id']
+    session['confirm_consent'] = ('confirm_consent' in db.testUser.find_one({'id': session['id']}))
     if (len(profile) == 3) :
         session['email'] = profile['email']
     else:

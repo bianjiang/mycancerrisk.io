@@ -98,16 +98,11 @@ def sendresult():
 @userinfo.route('/checkuser',methods=['GET'])
 def checkuser():
     try:
-        current_app.logger.info(session.get('logged_in'))
         if session.get('logged_in') == True:
-        # if db.testUser.find_one({'id' : session['id']}) != None:
-            #return jsonify(status='OK',message=JSONEncoder().encode(data))
-            # current_app.logger.info(session['logged_in'])
-            session['confirm_consent'] = db.testUser.find_one({'id': session['id']})['confirm_consent']
             return jsonify(message={'status' : 'olduser', 'logged_in': session['logged_in'], 'confirm_consent': session['confirm_consent']})
         else:
             # # current_app.logger.info(session['email'])
-            session['confirm_consent'] = False
+            # session['confirm_consent'] = False
             return jsonify(message={'status' : 'newuser', 'email' : session['email'], 'logged_in': session['logged_in'], 'confirm_consent': session['confirm_consent']})
         # db.testUser.drop()
     except Exception as e:
