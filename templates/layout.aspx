@@ -16,28 +16,6 @@
   <meta property="og:image" content="" />
   <meta property="og:site_name" content=""/>
   <meta property="og:description" content=""/>
-  <link rel="stylesheet" href="/static/app/bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="/static/app/bower_components/html5-boilerplate/dist/css/main.css">
-<!--   <link rel="stylesheet" href="/static/app/bower_components/font-awesome/css/font-awesome.css"> -->
-
-  <link rel="stylesheet" href="/static/app/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  
-  <link rel="stylesheet" href="/static/app/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-
-  <link rel="stylesheet" href="/static/app/bower_components/angular-loading-bar/build/loading-bar.min.css">
-
-<!-- 
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine|Open+Sans|Work+Sans">
- -->
-
-  <link rel="stylesheet" href="/static/app/css/app.css">
-  <link rel="stylesheet" href="/static/app/css/typesettings-1.1-min.css">
-
-  <script src="/static/app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-  <script src="/static/app/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script type="text/javascript" src='/static/app/config.js'></script><!-- 
-  <script type="text/javascript" src='/static/app/js/fixed_navbar.js'></script> -->
 
 </head>
   <body ng-app="CRCRiskApp" ng-controller="GlobalCtrl">
