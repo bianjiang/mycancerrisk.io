@@ -30,6 +30,7 @@ def homepage():
 
 sched = BackgroundScheduler()
 sched.add_job(notification.notify, 'interval', seconds = 604800)
+# sched.add_job(notification.notify, 'interval', seconds = 10)
 sched.start()
 
 if __name__ == '__main__':

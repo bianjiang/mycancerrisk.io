@@ -71,11 +71,11 @@ def facebook_authorized():
         session['confirm_consent'] = False
     else:
         session['confirm_consent'] = True
-        db.logging.insert_one({
-            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-            'user_id': session['id'],
-            'event_type': 'log_in'
-            })
+    db.logging.insert_one({
+        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'user_id': session['id'],
+        'event_type': 'log_in'
+        })
 
     if (len(profile) == 3) :
         session['email'] = profile['email']
