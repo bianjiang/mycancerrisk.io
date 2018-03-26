@@ -362,16 +362,16 @@ class OAuthRemoteApp(object):
                 self.consumer_key, token=token
             )
         return client
-
+# 
     @staticmethod
     def http_request(uri, headers=None, data=None, method=None):
         uri, headers, data, method = prepare_request(
             uri, headers, data, method
         )
-        authinfo = http.HTTPBasicAuthHandler()
-        proxy_support = http.ProxyHandler({"https" : "https://proxe.shands.ufl.edu:3128"})
-        opener = http.build_opener(proxy_support, authinfo)
-        http.install_opener(opener)
+        # authinfo = http.HTTPBasicAuthHandler()
+        # proxy_support = http.ProxyHandler({"https" : "https://proxe.shands.ufl.edu:3128"})
+        # opener = http.build_opener(proxy_support, authinfo)
+        # http.install_opener(opener)
         req = http.Request(uri, headers=headers, data=data)
         req.get_method = lambda: method.upper()
         try:

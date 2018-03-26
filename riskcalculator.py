@@ -9,14 +9,11 @@ from time import gmtime, strftime, strptime
 from dbmongo import db
 from datetime import datetime
 
-Race = -1
-T1 =-1
-T2 = -1
-gender = ''
-current_time = ''
+
 crc_beta_ar = {}
 crc_hazard = {}
 crc_avgrisk = {}
+race = ['white','black','hispanic','asian']
 
 with open("./crcdata/crc_beta_ar.json") as json_file:
     crc_beta_ar = json.load(json_file)
@@ -36,12 +33,11 @@ class JSONEncoder(json.JSONEncoder):
 
 riskcalculator = Blueprint('riskcalculator',__name__)
 
-def ar_calculator(One_AR_RR):
+def ar_calculator(One_AR_RR,Race,gender,T1,T2):
     One_ARxRR_r = One_AR_RR[0]
     One_ARxRR_p = One_AR_RR[1]
     One_ARxRR_d = One_AR_RR[2]
 
-    race = ['white','black','hispanic','asian']
     Strt_j      = T1 - 49;
     End_j       = T2 - 50;
 
@@ -81,23 +77,33 @@ def CI_calculator(Var_Pi,AbsRsk):
 
     return [CIL,CIU]
 
+# get start time
+@riskcalculator.route('/starttest',methods=['POST'])
+def starttest():
+    try:
+        if request.json['info'] == 'start':
+            db.logging.insert_one({
+                'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'user_id': session['id'],
+                'event_type': 'start_test'
+                })
+            return jsonify(message={'info': 'success'})
+        else:
+            return jsonify(message={'info': 'failed'})
+    except Exception as e:
+        return str(e)
+
+
 @riskcalculator.route('/saveuserinfo',methods=['POST'])
 def updateForm():
     try:
         usr_test = {}
         json_data = request.json['info']
         usr_test['test_data'] = json_data
-        race = ['white','black','hispanic','asian']
-        # current_app.logger.info(usr_test)  # the jaon_data is 'dict'
-        ### declear input variable ###
-        global Race
-        global T1
-        global gender
-        global T2
-        global current_time
 
+        # the jaon_data is 'dict'
+        ### declear input variable ###
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        current_app.logger.info(current_time)
         BMI_male = -1
         BMI_female = -1
         Veg = -1
@@ -199,7 +205,6 @@ def updateForm():
         else:
             Rel_CRC = 0
             Rel_Trend = 0
-
         gender = json_data['demographics']['gender']
         #Rel_Trend
          ### male input only ###
@@ -251,11 +256,11 @@ def updateForm():
 
             # AbsRisk
             T2 = T1 + 5
-            AbsRisk[0] = ar_calculator(One_AR_RR)
+            AbsRisk[0] = ar_calculator(One_AR_RR,Race,gender,T1,T2)
             T2 = T1 + 10
-            AbsRisk[1] = ar_calculator(One_AR_RR)
+            AbsRisk[1] = ar_calculator(One_AR_RR,Race,gender,T1,T2)
             T2 = 90
-            AbsRisk[2] = ar_calculator(One_AR_RR)
+            AbsRisk[2] = ar_calculator(One_AR_RR,Race,gender,T1,T2)
 
         ### female input only ###
         if gender == 'Female':
@@ -298,22 +303,26 @@ def updateForm():
 
             # AbsRisk
             T2 = T1 + 5
-            AbsRisk[0] = ar_calculator(One_AR_RR)
+            AbsRisk[0] = ar_calculator(One_AR_RR,Race,gender,T1,T2)
             T2 = T1 + 10
-            AbsRisk[1] = ar_calculator(One_AR_RR)
+            AbsRisk[1] = ar_calculator(One_AR_RR,Race,gender,T1,T2)
             T2 = 90
-            AbsRisk[2] = ar_calculator(One_AR_RR)
+            AbsRisk[2] = ar_calculator(One_AR_RR,Race,gender,T1,T2)
 
 
         Avgrisk = [float(crc_avgrisk[gender][str(T1)][race[Race-1]][0]),float(crc_avgrisk[gender][str(T1)][race[Race-1]][1]),float(crc_avgrisk[gender][str(T1)][race[Race-1]][2])]
         usr_test['test_result'] = {'absRsk': AbsRisk, 'avgrisk': Avgrisk}
-        # current_app.logger.info(usr_test)
 
         # insert test_result
         if db.testUser.find_one({'id' : session['id']}) != None:
-            # current_app.logger.info('find')
             db.testUser.update({'id': session['id']},{'$set':{'test_info.' + current_time : usr_test}})
+            db.logging.insert_one({
+                'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'user_id': session['id'],
+                'event_type': 'end_test'
+                })
         else:
+            current_app.logger.info('can not find')
             return jsonify(status='ERROR',message='update test result failed')
 
         return jsonify(status='SUCCESS',message=current_time)

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
+angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap','ngCookies'])
 
-    .controller('UserCtrl', ['$scope','$rootScope', '$http', '$window', '$route','$location', '$uibModal', '$timeout',function($scope, $rootScope, $http, $window,$route,$location,$uibModal,$timeout) {
+    .controller('UserCtrl', ['$scope','$rootScope', '$http', '$window', '$route','$location', '$uibModal', '$timeout', '$cookies', function($scope, $rootScope, $http, $window,$route,$location,$uibModal,$timeout,$cookies) {
 
         $scope.response_user={};
         $scope.warning = '';
@@ -22,27 +22,36 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
             modalInstance.result.then(function (result) {
             }, null);
         }
-        $http({
-            method: 'get',
-            url: '/checkuser'
-        }).then(function (response) {
-            if (response.data.message != undefined) {
-                    if (response.data.message['logged_in'] != true) {
-                        $location.path('/welcome');
-                    }
-                    else {
-                        if (response.data.message['confirm_consent'] != true) {
-                            $timeout(function() {
-                                angular.element('.consentform_bnt').triggerHandler('click');
-                            }, 0);
-                        }
-                    }
-                } else {
-                       $location.path('/welcome');
-                }
-        },function (error){
-            console.log(error, '"not login"');
-        });
+        if ($cookies.get('logged_in') != 'true') {
+            $location.path('/welcome');
+        } else {
+            if ($cookies.get('confirm_consent') != 'true') {
+                $timeout(function() {
+                    angular.element('.consentform_bnt').triggerHandler('click');
+                }, 0);
+            }
+        }
+        // $http({
+        //     method: 'get',
+        //     url: '/checkuser'
+        // }).then(function (response) {
+        //     if (response.data.message != undefined) {
+        //             if (response.data.message['logged_in'] != true) {
+        //                 $location.path('/welcome');
+        //             }
+        //             else {
+        //                 if (response.data.message['confirm_consent'] != true) {
+        //                     $timeout(function() {
+        //                         angular.element('.consentform_bnt').triggerHandler('click');
+        //                     }, 0);
+        //                 }
+        //             }
+        //         } else {
+        //                $location.path('/welcome');
+        //         }
+        // },function (error){
+        //     console.log(error, '"not login"');
+        // });
         $scope.form_user = [
                                         {
                                             "key": "fname",
@@ -110,7 +119,11 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                     response.data.message = {'email' : $rootScope.fbemail}
                     $scope.response_user = response.data.message;
                 } else {
-                    $scope.response_user = response.data;
+                    $scope.response_user.email = response.data.email;
+                    $scope.response_user.lname = response.data.lname;
+                    $scope.response_user.fname = response.data.fname;
+                    $scope.response_user.age = response.data.age;
+                    $rootScope.confirm_consent = response.data.confirm_consent;
                 }
         },function (error){
             console.log(error);
@@ -124,38 +137,44 @@ angular.module('CRCRiskApp.user', ['ngRoute','schemaForm','ui.bootstrap'])
                   method: 'POST',
                   url: '/update',
                   data: {
-                      info: $scope.response_user
+                      info: $scope.response_user,
+                      consentform: $rootScope.confirm_consent
                   }
                   }).then(function(response) {
-                      // $scope.info = response.data.message;
-                      console.log(response.data.message);
+                      if (response.data.status == "ERROR") {
+                        $location.path('#user');
+                      } else {
+                        $cookies.put('confirm_consent',true);
+                        $location.path('#welcome');
+                      }
                   }, function(error) {
                       console.log(error);
                   });
-                $location.path('#welcome')
 
             }
         }
 
      //    console.log(UserData);
 }])
-    .controller('consentformCtrl', ['$scope','$rootScope','$http', function ($scope,$rootScope,$http) {
+    .controller('consentformCtrl', ['$scope','$rootScope','$http', '$cookies', function ($scope,$rootScope,$http,$cookies) {
         $scope.close = function () {
               $scope.modalInstance.close(false);
         };
         $scope.confirm_consent = function () {
-              $http({
-                    method: 'POST',
-                    url: '/confirm_consent',
-                    data: {
-                        info: true
-                    }
-                    }).then(function(response) {
-                      $scope.modalInstance.close(false);
-                       console.log(response.data.message);
-                    }, function(error) {
-                        console.log(error);
-                    });
+              // $http({
+              //       method: 'POST',
+              //       url: '/confirm_consent',
+              //       data: {
+              //           info: true
+              //       }
+              //       }).then(function(response) {
+              //         $scope.modalInstance.close(false);
+              //          console.log(response.data.message);
+              //       }, function(error) {
+              //           console.log(error);
+              //       });
+              $rootScope.confirm_consent = true;
+              $scope.modalInstance.close(false);
         };
         if($rootScope.newuser != true) {
             $(function(){

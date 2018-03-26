@@ -1,22 +1,30 @@
 'use strict';
 
-angular.module('CRCRiskApp.test-results', ['ngRoute','schemaForm','smart-table'])
-    .controller('TestResultsCtrl', ['$scope', '$http', '$location', '$filter', '$rootScope', function($scope,$http,$location,$filter,$rootScope) {
+angular.module('CRCRiskApp.test-results', ['ngRoute','schemaForm','smart-table', 'ngCookies'])
+    .controller('TestResultsCtrl', ['$scope', '$http', '$location', '$filter', '$rootScope', '$cookies', function($scope,$http,$location,$filter,$rootScope,$cookies) {
         $scope.rowCollection = {}
-        $http({
-            method: 'get',
-            url: '/checkuser'
-        }).then(function (response) {
-            if (response.data.message != undefined) {
-                    if (response.data.message['logged_in'] != true) {
-                        $location.path('/welcome');
-                    }
-                } else {
-                       $location.path('/welcome');
-                }
-        },function (error){
-            console.log(error, '"not login"');
-        });
+        if ($cookies.get('logged_in') != 'true') {
+            $location.path('/welcome');
+        } else {
+          if ($cookies.get('confirm_consent') != 'true') {
+            $location.path('/user')
+          }
+        }
+        // $http({
+        //     method: 'get',
+        //     url: '/checkuser'
+        // }).then(function (response) {
+        //     if (response.data.message != undefined) {
+        //             if (response.data.message['logged_in'] != true) {
+        //                 $location.path('/welcome');
+        //             }
+        //         } else {
+        //                $location.path('/welcome');
+        //         }
+        // },function (error){
+        //     console.log(error, '"not login"');
+        // });
+
         $http({
             method: 'get',
             url: '/getuserinfo'

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'])
+angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar', 'ngCookies'])
     .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
         cfpLoadingBarProvider.latencyThreshold = 50;
         cfpLoadingBarProvider.includeSpinner = false;
@@ -8,26 +8,28 @@ angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'
         cfpLoadingBarProvider.loadingBarTemplate = '<div id="loading-bar"><span class="fa">Working hard...</span><div class="bar"><div class="peg"></div></div></div>';
 
     }])
-    .controller('CRCRiskCtrl', ['$scope', '$rootScope', '$http', '$location','$timeout', 'cfpLoadingBar', function($scope, $rootScope, $http, $location, $timeout, cfpLoadingBar) {
+    .controller('CRCRiskCtrl', ['$scope', '$rootScope', '$http', '$location','$timeout', 'cfpLoadingBar','$cookies', function($scope, $rootScope, $http, $location, $timeout, cfpLoadingBar, $cookies) {
 
         $scope.pretty = function(){
             return typeof $scope.response === 'string' ? $scope.response : JSON.stringify($scope.response, undefined, 2);
         };
         // check user existence
+        if ($cookies.get('logged_in') != 'true') {
+            $location.path('/welcome');
+        }
+        console.log('test');
         $http({
-            method: 'get',
-            url: '/checkuser'
+            method: 'post',
+            url: '/starttest',
+            data: {
+                      info: 'start'
+                  }
         }).then(function (response) {
-            if (response.data.message != undefined) {
-                    if (response.data.message['logged_in'] != true) {
-                        $location.path('/welcome');
-                    }
-                } else {
-                       $location.path('/welcome');
-                }
+            console.log(response.data);
         },function (error){
-            console.log(error, '"not login"');
+            console.log(error, 'test start failed');
         });
+
         $scope.age = 0
         $http({
             method: 'get',
@@ -98,7 +100,6 @@ angular.module('CRCRiskApp.risk', ['ngRoute','schemaForm', 'angular-loading-bar'
                       info: final_response
                   }
                   }).then(function(response) {
-                      console.log(response.data.message);
                       $rootScope.result_time = response.data.message;
                   }, function(error) {
                       console.log(error);

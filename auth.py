@@ -4,7 +4,7 @@ from flask_oauthlib.client import OAuth, OAuthException
 from flask import current_app
 import json
 from dbmongo import db
-
+from datetime import datetime
 # from facepy import GraphAPI
 # from apscheduler.schedulers.background import BackgroundScheduler
 # import atexit
@@ -39,8 +39,8 @@ def login():
     callback = url_for(
         'fb_auth.facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
-        _external=True,
-        _scheme= 'https'
+        _external=True
+        # _scheme= 'https'
         )
     return facebook.authorize(callback=callback)
 
@@ -66,15 +66,31 @@ def facebook_authorized():
     profile = json.loads(profile.decode("utf-8"))
     session['user_name'] = profile['name']
     session['id'] = profile['id']
-    session['confirm_consent'] = ('confirm_consent' in db.testUser.find_one({'id': session['id']}))
+
+    if (db.testUser.find_one({'id': session['id']}) == None):
+        session['confirm_consent'] = False
+    else:
+        session['confirm_consent'] = True
+        db.logging.insert_one({
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'user_id': session['id'],
+            'event_type': 'log_in'
+            })
+
     if (len(profile) == 3) :
         session['email'] = profile['email']
     else:
         session['email'] = 'none'
-    # session['email'] = profile['email']
+
     return redirect(url_for('homepage'))
 
 @fb_auth.route("/logout")
 def logout():
+    db.logging.insert_one({
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'user_id': session['id'],
+            'event_type': 'log_out'
+            })
+
     pop_login_session()
-    return redirect(url_for('homepage'))
+    return 'logout'

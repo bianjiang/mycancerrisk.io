@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CRCRiskApp.risk-results', ['ngRoute','schemaForm','smart-table','angular-loading-bar','ui.bootstrap'])
+angular.module('CRCRiskApp.risk-results', ['ngRoute','schemaForm','smart-table','angular-loading-bar','ui.bootstrap','ngCookies'])
     .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
             cfpLoadingBarProvider.latencyThreshold = 50;
             cfpLoadingBarProvider.includeSpinner = false;
@@ -8,7 +8,7 @@ angular.module('CRCRiskApp.risk-results', ['ngRoute','schemaForm','smart-table',
             cfpLoadingBarProvider.loadingBarTemplate = '<div id="loading-bar"><span class="fa">Working hard...</span><div class="bar"><div class="peg"></div></div></div>';
 
         }])
-    .controller('CRCRiskResultsCtrl', ['$scope', '$http', '$location', '$filter','$timeout', 'cfpLoadingBar', '$rootScope', '$uibModal', function($scope,$http,$location, $filter, $timeout, cfpLoadingBar,$rootScope, $uibModal ) {
+    .controller('CRCRiskResultsCtrl', ['$scope', '$http', '$location', '$filter','$timeout', 'cfpLoadingBar', '$rootScope', '$uibModal', '$cookies', function($scope,$http,$location, $filter, $timeout, cfpLoadingBar,$rootScope, $uibModal, $cookies ) {
         $scope.pretty = function(){
             return typeof $scope.response === 'string' ? $scope.response : JSON.stringify($scope.response, undefined, 2);
         };
@@ -27,27 +27,10 @@ angular.module('CRCRiskApp.risk-results', ['ngRoute','schemaForm','smart-table',
             modalInstance.result.then(function (result) {
             }, null);
         }
-        $http({
-            method: 'get',
-            url: '/checkuser'
-        }).then(function (response) {
-            if (response.data.message != undefined) {
-                    if (response.data.message['logged_in'] != true) {
-                        $location.path('/welcome');
-                    } else {
-                        if (response.data.message['status'] == 'newuser') {
-                            if (response.data.message['email'] != 'none') {
-                                $rootScope.fbemail = response.data.message['email'];
-                            }
-                            $location.path('/user');
-                        }
-                    }
-                } else {
-                       $location.path('/welcome');
-                }
-        },function (error){
-            console.log(error, '"not login"');
-        });
+        if ($cookies.get('logged_in') != 'true') {
+            $location.path('/welcome');
+        }
+
         $scope.rowCollection = {};
         // $scope.factors1 = 'Close relatives (parents, brothers, sisters, or children) who have had colorectal cancer. If you have close relatives who have had colorectal cancer, your risk of colorectcal cancer is slightly higher. This is more true if the relative had the cancer at a young age. If you have many close relatives who have had colorectal cancer, the risk can be even higher.';
         // console.log($rootScope.result_time);
