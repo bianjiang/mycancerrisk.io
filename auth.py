@@ -71,6 +71,8 @@ def facebook_authorized():
         session['confirm_consent'] = False
     else:
         session['confirm_consent'] = True
+
+    current_app.logger.info('test')
     db.logging.insert_one({
         'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         'user_id': session['id'],
