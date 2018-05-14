@@ -16,7 +16,7 @@
   <meta property="og:image" content="" />
   <meta property="og:site_name" content=""/>
   <meta property="og:description" content=""/>
-  <link rel="stylesheet" href="/static/app/bundle/main.min.v1.css">
+  <link rel="stylesheet" href="/static/app/bundle/main.min.v2.css">
 </head>
   <body ng-app="CRCRiskApp" ng-controller="GlobalCtrl">
    <!--[if lt IE 8]>
