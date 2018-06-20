@@ -27,6 +27,10 @@ CRCRiskApp.register_blueprint(userinfo);
 def homepage():
     return render_template('index.aspx')
 
+@CRCRiskApp.route('/.well-known/pki-validation/1497FEBB82D9DFA0D87B92F8BA5376D4.txt', methods=['GET'])
+def ssl():
+    return render_template('1497FEBB82D9DFA0D87B92F8BA5376D4.txt')
+
 
 sched = BackgroundScheduler()
 sched.add_job(notification.notify, 'interval', seconds = 604800)
