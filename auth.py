@@ -18,11 +18,11 @@ facebook = oauth.remote_app(
     consumer_key=config.FACEBOOK_APP_ID,
     consumer_secret=config.FACEBOOK_APP_SECRET,
     request_token_params={'scope': 'email'},
-    base_url='https://graph.facebook.com',
+    base_url='https://graph.facebook.com/v3.1',
     request_token_url=None,
-    access_token_url='https://graph.facebook.com/oauth/access_token',
+    access_token_url='https://graph.facebook.com/v3.1/oauth/access_token',
     access_token_method='GET',
-    authorize_url='https://www.facebook.com/dialog/oauth'
+    authorize_url='https://www.facebook.com/v3.1/dialog/oauth'
 )
 
 
@@ -60,8 +60,8 @@ def facebook_authorized():
     session['logged_in'] = True
     # me = facebook.get('/me') # get user info (id, uname)
     # graph = fb.GraphAPI(resp['access_token'])
-    args = {'fields' : 'id,name,email', }
-    r, profile = facebook.http_request('https://graph.facebook.com/me?fields=id%2Cname&access_token=' + session['oauth_token'][0], method="GET")
+    # args = {'fields' : 'id,name,email', }
+    r, profile = facebook.http_request('https://graph.facebook.com/v3.1/me?fields=id%2Cname&access_token=' + session['oauth_token'][0], method="GET")
     # profile = graph.get_object('me', **args)
     profile = json.loads(profile.decode("utf-8"))
     session['user_name'] = profile['name']
